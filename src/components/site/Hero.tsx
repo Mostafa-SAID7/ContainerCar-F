@@ -23,7 +23,7 @@ export function Hero() {
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
     >
       {/* Portrait — right half, layered above the wordmark */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[78%] sm:w-[62%] lg:w-[52%]">
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-30 w-[78%] sm:w-[62%] lg:w-[52%]">
         <img
           src={heroImage}
           alt="Portrait of Mostafa Samir"
@@ -32,7 +32,7 @@ export function Hero() {
           fetchPriority="high"
           className="size-full object-contain object-bottom drop-shadow-[0_20px_60px_oklch(0_0_0/0.45)]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
 
       {/* Thin frame rules */}
