@@ -30,7 +30,7 @@ export function Hero() {
           width={861}
           height={768}
           fetchPriority="high"
-          className="size-full object-contain object-bottom drop-shadow-[0_20px_60px_oklch(0_0_0/0.45)]"
+          className="size-full object-contain object-bottom"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent" />
       </div>
