@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Instagram, Twitter } from "lucide-react";
-import heroAsset from "@/assets/portrait-cutout.webp.asset.json";
 
-const heroImage = heroAsset.url;
+const heroImage = "/images/portrait-cutout.png";
 
 const services = ["BOOKING SYSTEMS", "MULTI-TENANT SAAS", "REAL-TIME APIS"];
 
