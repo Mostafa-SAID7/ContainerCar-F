@@ -1,79 +1,43 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { PageShell } from "@/components/layout/PageShell";
-import { Hero } from "@/components/sections/Hero";
-import { AboutPreview } from "@/components/sections/home/AboutPreview";
-import { SkillsPreview } from "@/components/sections/home/SkillsPreview";
-import { Projects } from "@/components/sections/Projects";
-import { ExperiencePreview } from "@/components/sections/home/ExperiencePreview";
-import { CredentialsCarousel } from "@/components/credentials/CredentialsCarousel";
-import { ContactCta } from "@/components/sections/home/ContactCta";
-import { pageSeo } from "@/lib/seo";
-import { SITE, absoluteUrl } from "@/lib/site";
-const heroIsoAvif = "/images/hero-iso.avif";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { Work } from "@/components/site/Work";
+import { Expertise } from "@/components/site/Expertise";
+import { Experience } from "@/components/site/Experience";
+import { About } from "@/components/site/About";
 
-const DESCRIPTION =
-  "Portfolio of Mostafa Samir, Senior Full Stack Engineer specializing in .NET 8 microservices, React.js and Angular platforms.";
+import { Footer } from "@/components/site/Footer";
+
+const title = "Mostafa Samir — Booking Systems Full Stack Engineer";
+const description =
+  "Senior Full Stack Engineer building high-performance, multi-tenant booking and scheduling infrastructure with .NET 8, microservices and real-time systems.";
 
 export const Route = createFileRoute("/")({
-  head: () => {
-    const seo = pageSeo({
-      title: `${SITE.name} | ${SITE.role}`,
-      description: DESCRIPTION,
-      path: "/",
-      jsonLd: [
-        {
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: SITE.name,
-          jobTitle: SITE.role,
-          url: absoluteUrl("/"),
-          knowsAbout: [
-            ".NET 8 microservices",
-            "Next.js",
-            "Multi-vendor marketplaces",
-            "Real-time bidding systems",
-          ],
-        },
-      ],
-    });
-
-    return {
-      ...seo,
-      links: [
-        ...seo.links,
-        {
-          rel: "preload",
-          as: "image",
-          type: "image/avif",
-          href: heroIsoAvif,
-          fetchPriority: "high",
-        },
-      ],
-    };
-  },
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
 function Index() {
   return (
-    <PageShell contained={false} padded={false}>
-      <Hero />
-      <Projects />
-      <div className="defer-paint">
-        <SkillsPreview />
-      </div>
-      <div className="defer-paint">
-        <ExperiencePreview />
-      </div>
-      <div className="defer-paint">
-        <AboutPreview />
-      </div>
-      <div className="defer-paint">
-        <CredentialsCarousel />
-      </div>
-      <div className="defer-paint">
-        <ContactCta />
-      </div>
-    </PageShell>
+    <div className="min-h-screen bg-background">
+      <Nav />
+      <main>
+        <Hero />
+        <Work />
+        <Expertise />
+        <Experience />
+        <About />
+      </main>
+      <Footer />
+    </div>
   );
 }
