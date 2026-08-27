@@ -23,8 +23,8 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[100svh] flex-col overflow-hidden bg-background"
     >
-      {/* Portrait — right half */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-[78%] sm:w-[62%] lg:w-[52%]">
+      {/* Portrait — right half, layered above the wordmark */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-[78%] sm:w-[62%] lg:w-[52%]">
         <img
           src={heroImage}
           alt="Portrait of Mostafa Samir"
@@ -127,8 +127,8 @@ export function Hero() {
         <ArrowDown className="size-5 animate-bounce" />
       </a>
 
-      {/* Wordmark */}
-      <div className="absolute inset-x-0 bottom-0 z-10 flex items-center gap-6 px-6 pb-6 md:pl-24 lg:px-10 lg:pl-28">
+      {/* Wordmark — sits behind the portrait so the cutout isn't clipped */}
+      <div className="absolute inset-x-0 bottom-0 z-0 flex items-center gap-6 px-6 pb-6 md:pl-24 lg:px-10 lg:pl-28">
         <span className="display text-[clamp(2rem,7vw,4.5rem)] uppercase leading-none tracking-[0.02em] text-foreground">
           Mostafa
         </span>
