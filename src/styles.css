@@ -178,3 +178,34 @@
   font-variant-numeric: tabular-nums;
   font-family: var(--font-display);
 }
+
+/* Themed scrollbar — graphite track, brand-orange thumb. */
+@layer base {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand) var(--color-secondary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-secondary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border: 3px solid var(--color-secondary);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--color-brand) 80%, var(--color-foreground));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--color-secondary);
+  }
+}
