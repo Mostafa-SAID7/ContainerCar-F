@@ -1,15 +1,19 @@
 {
-  "name": "tanstack_start_ts",
+  "name": "containercar",
+  "version": "1.0.0",
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "description": "ContainerCar - Platform for container businesses, franchises, and suppliers",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "overrides": {
     "rolldown": "1.2.1"
