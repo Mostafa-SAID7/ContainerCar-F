@@ -36,7 +36,8 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
+          <ThemeToggle />
+          <
             href="#browse"
             className="hidden rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-brand-foreground transition-opacity hover:opacity-90 sm:inline-block"
           >
