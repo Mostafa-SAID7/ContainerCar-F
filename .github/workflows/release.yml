@@ -1,27 +1,21 @@
 name: Release & Versioning
 
 on:
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
     inputs:
       version:
-        description: "Release version (e.g., 1.0.1)"
+        description: "Release version (e.g., 1.0.0)"
         required: true
         type: string
-      release_type:
-        description: "Release type"
-        required: true
-        default: "patch"
-        type: choice
-        options:
-          - patch
-          - minor
-          - major
 
 env:
   NODE_VERSION: "20"
 
 jobs:
-  create-release:
+  release:
     name: Create Release
     runs-on: ubuntu-latest
 
@@ -30,15 +24,25 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get Version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION=${GITHUB_REF#refs/tags/v}
+          else
+            VERSION=${{ github.event.inputs.version }}
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+
       - name: Validate Version Format
         run: |
-          VERSION="${{ github.event.inputs.version }}"
+          VERSION="${{ steps.version.outputs.version }}"
           if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "❌ Invalid version format: $VERSION"
-            echo "Use format: X.Y.Z (e.g., 1.0.1)"
             exit 1
           fi
-          echo "✅ Version format valid: $VERSION"
+          echo "✅ Version: $VERSION"
 
       - uses: actions/setup-node@v4
         with:
@@ -49,75 +53,64 @@ jobs:
       - name: Install Dependencies
         run: npm ci || npm install
 
-      - name: Validate Code Quality
+      - name: Lint Check
         run: npm run lint || true
 
-      - name: Build Production Bundle
+      - name: Build Production
         run: npm run build
-
-      - name: Create Release Tag
-        run: |
-          VERSION="${{ github.event.inputs.version }}"
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
-
-          # Create annotated tag
-          git tag -a "v$VERSION" -m "Release v$VERSION" || true
-
-          # Push tag to remote
-          git push origin "v$VERSION" || true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release Archive
         run: |
           mkdir -p release-artifacts
           cd dist/
-          tar -czf ../release-artifacts/containercar-${{ github.event.inputs.version }}.tar.gz .
-          cd ../release-artifacts
-          ls -lh
+          tar -czf ../release-artifacts/containercar-${{ steps.version.outputs.version }}.tar.gz .
+          ls -lh ../release-artifacts/
+
+      - name: Create Tag (if workflow_dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git tag -a "${{ steps.version.outputs.tag }}" -m "Release ${{ steps.version.outputs.tag }}" || true
+          git push origin "${{ steps.version.outputs.tag }}" || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ github.event.inputs.version }}
-          name: v${{ github.event.inputs.version }}
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: v${{ steps.version.outputs.version }}
           body: |
-            # Release v${{ github.event.inputs.version }}
+            # Release v${{ steps.version.outputs.version }}
 
-            **Release Type:** ${{ github.event.inputs.release_type }}
+            **Type:** Container Business Platform MVP
 
-            ## What's New
-            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for full details.
-
-            ## Installation
-            ```bash
-            npm install
-            npm run build
-            ```
-
-            ## Download
-            - **Build Artifact:** containercar-${{ github.event.inputs.version }}.tar.gz
+            ## What's Included
+            - ✅ Budget discovery tool
+            - ✅ Business marketplace
+            - ✅ Equipment checklist
+            - ✅ Franchise information
+            - ✅ Supplier network
+            - ✅ Responsive design
+            - ✅ Arabic & English support
 
             ## Links
             - [Repository](https://github.com/${{ github.repository }})
-            - [Issues](https://github.com/${{ github.repository }}/issues)
-            - [Pull Requests](https://github.com/${{ github.repository }}/pulls)
-          files: |
-            release-artifacts/containercar-${{ github.event.inputs.version }}.tar.gz
+            - [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
+
+            ## Download
+            Extract and deploy: `tar -xzf containercar-${{ steps.version.outputs.version }}.tar.gz`
+          files: release-artifacts/containercar-${{ steps.version.outputs.version }}.tar.gz
           draft: false
           prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish Release Summary
+      - name: Release Summary
         run: |
-          echo "✅ Release Created Successfully!"
+          echo "✅ Release Created!"
           echo ""
-          echo "📦 Release Information:"
-          echo "  - Version: v${{ github.event.inputs.version }}"
-          echo "  - Type: ${{ github.event.inputs.release_type }}"
-          echo "  - URL: https://github.com/${{ github.repository }}/releases/tag/v${{ github.event.inputs.version }}"
-          echo ""
-          echo "📥 Download:"
-          echo "  - Build: https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/containercar-${{ github.event.inputs.version }}.tar.gz"
+          echo "📦 Release v${{ steps.version.outputs.version }}"
+          echo "🔗 https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.tag }}"
+          echo "📥 Download: containercar-${{ steps.version.outputs.version }}.tar.gz"
