@@ -1,0 +1,77 @@
+name: Lint & Format Check
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  lint:
+    name: ESLint Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - run: npm ci
+      
+      - name: Run ESLint
+        run: npm run lint
+        
+      - name: Report ESLint Results
+        if: failure()
+        run: |
+          echo "❌ ESLint failed. Fix issues with: npm run lint -- --fix"
+          exit 1
+
+  format:
+    name: Prettier Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - run: npm ci
+      
+      - name: Check Prettier Formatting
+        run: npx prettier --check .
+        
+      - name: Report Format Issues
+        if: failure()
+        run: |
+          echo "❌ Formatting issues found. Fix with: npm run format"
+          exit 1
+
+  typescript:
+    name: TypeScript Type Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - run: npm ci
+      
+      - name: Check TypeScript
+        run: npx tsc --noEmit
+        
+      - name: Report TypeScript Errors
+        if: failure()
+        run: |
+          echo "❌ TypeScript errors found. Check types and fix."
+          exit 1
