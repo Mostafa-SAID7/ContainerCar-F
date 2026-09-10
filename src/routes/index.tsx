@@ -6,9 +6,9 @@ import { Franchises } from "@/components/site/Franchises";
 import { Suppliers } from "@/components/site/Suppliers";
 import { HowItWorks } from "@/components/site/HowItWorks";
 
-const title = "Start a Business in Egypt — Ideas, Franchises & Suppliers";
+const title = "ContainerCar — Start a Container Business in Egypt";
 const description =
-  "Browse business ideas by budget, compare franchise brands and find vetted suppliers to launch your venture in Egypt.";
+  "Compare investment, setup time and staffing for ready-to-run container businesses, franchise brands and verified suppliers.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
