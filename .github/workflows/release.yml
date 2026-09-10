@@ -1,16 +1,15 @@
 name: Release & Versioning
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "package.json"
-      - "CHANGELOG.md"
   workflow_dispatch:
     inputs:
-      version_type:
-        description: "Version type (major, minor, patch)"
-        required: false
+      version:
+        description: "Release version (e.g., 1.0.1)"
+        required: true
+        type: string
+      release_type:
+        description: "Release type"
+        required: true
         default: "patch"
         type: choice
         options:
@@ -22,203 +21,24 @@ env:
   NODE_VERSION: "20"
 
 jobs:
-  check-version:
-    name: Check Version Change
+  create-release:
+    name: Create Release
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      should_release: ${{ steps.version.outputs.should_release }}
-      version_type: ${{ steps.version.outputs.version_type }}
 
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
-
-      - name: Get Current Version
-        id: current
-        run: |
-          CURRENT=$(node -p "require('./package.json').version")
-          echo "current=$CURRENT" >> $GITHUB_OUTPUT
-          echo "Version: $CURRENT"
-
-      - name: Get Previous Version
-        id: previous
-        run: |
-          if git rev-parse HEAD~1 &>/dev/null; then
-            PREVIOUS=$(git show HEAD~1:package.json 2>/dev/null | node -p "try{require('fs').readFileSync('/dev/stdin', 'utf8').match(/\"version\":\s*\"([^\"]+)\"/)[1]}catch(e){'0.0.0'}" 2>/dev/null || echo "0.0.0")
-          else
-            PREVIOUS="0.0.0"
-          fi
-          echo "previous=$PREVIOUS" >> $GITHUB_OUTPUT
-          echo "Previous Version: $PREVIOUS"
-
-      - name: Detect Version Change
-        id: version
-        run: |
-          CURRENT="${{ steps.current.outputs.current }}"
-          PREVIOUS="${{ steps.previous.outputs.previous }}"
-          MANUAL_VERSION="${{ github.event.inputs.version_type }}"
-          
-          # Manual trigger always triggers release
-          if [ -n "$MANUAL_VERSION" ]; then
-            echo "Manual trigger detected with type: $MANUAL_VERSION"
-            echo "should_release=true" >> $GITHUB_OUTPUT
-            echo "version=$CURRENT" >> $GITHUB_OUTPUT
-            echo "version_type=$MANUAL_VERSION" >> $GITHUB_OUTPUT
-          elif [ "$CURRENT" != "$PREVIOUS" ]; then
-            echo "Version change detected: $PREVIOUS → $CURRENT"
-            echo "should_release=true" >> $GITHUB_OUTPUT
-            echo "version=$CURRENT" >> $GITHUB_OUTPUT
-            
-            # Determine version type
-            IFS='.' read -r CURRENT_MAJOR CURRENT_MINOR CURRENT_PATCH <<< "$CURRENT"
-            IFS='.' read -r PREV_MAJOR PREV_MINOR PREV_PATCH <<< "$PREVIOUS"
-            
-            if [ "$CURRENT_MAJOR" != "$PREV_MAJOR" ]; then
-              echo "version_type=major" >> $GITHUB_OUTPUT
-            elif [ "$CURRENT_MINOR" != "$PREV_MINOR" ]; then
-              echo "version_type=minor" >> $GITHUB_OUTPUT
-            else
-              echo "version_type=patch" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "No version change detected (or manual workflow_dispatch without version bump)"
-            echo "should_release=false" >> $GITHUB_OUTPUT
-          fi
-          fi
-          echo "previous=$PREVIOUS" >> $GITHUB_OUTPUT
-
-      - name: Detect Version Change
-        id: version
-        run: |
-          CURRENT=${{ steps.current.outputs.current }}
-          PREVIOUS=${{ steps.previous.outputs.previous }}
-
-          if [ "$CURRENT" != "$PREVIOUS" ]; then
-            echo "should_release=true" >> $GITHUB_OUTPUT
-            echo "version=$CURRENT" >> $GITHUB_OUTPUT
-            
-            # Determine version type
-            IFS='.' read -r CURRENT_MAJOR CURRENT_MINOR CURRENT_PATCH <<< "$CURRENT"
-            IFS='.' read -r PREV_MAJOR PREV_MINOR PREV_PATCH <<< "$PREVIOUS"
-            
-            if [ "$CURRENT_MAJOR" != "$PREV_MAJOR" ]; then
-              echo "version_type=major" >> $GITHUB_OUTPUT
-            elif [ "$CURRENT_MINOR" != "$PREV_MINOR" ]; then
-              echo "version_type=minor" >> $GITHUB_OUTPUT
-            else
-              echo "version_type=patch" >> $GITHUB_OUTPUT
-            fi
-          else
-            echo "should_release=false" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Log Detection Results
-        run: |
-          echo "Current Version: ${{ steps.current.outputs.current }}"
-          echo "Previous Version: ${{ steps.previous.outputs.previous }}"
-          echo "Should Release: ${{ steps.version.outputs.should_release }}"
-          echo "Version Type: ${{ steps.version.outputs.version_type }}"
-
-  validate-release:
-    name: Validate Release
-    runs-on: ubuntu-latest
-    needs: check-version
-    if: needs.check-version.outputs.should_release == 'true'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-        env:
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
-      - name: Install Dependencies
-        run: npm ci || npm install
+          fetch-depth: 0
 
       - name: Validate Version Format
         run: |
-          VERSION="${{ needs.check-version.outputs.version }}"
+          VERSION="${{ github.event.inputs.version }}"
           if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "❌ Invalid semantic version: $VERSION"
+            echo "❌ Invalid version format: $VERSION"
+            echo "Use format: X.Y.Z (e.g., 1.0.1)"
             exit 1
           fi
-          echo "✅ Valid semantic version: $VERSION"
-
-      - name: Validate CHANGELOG
-        run: |
-          if ! grep -q "## \[${{ needs.check-version.outputs.version }}\]" CHANGELOG.md; then
-            echo "❌ CHANGELOG.md missing entry for version ${{ needs.check-version.outputs.version }}"
-            exit 1
-          fi
-          echo "✅ CHANGELOG.md has entry for ${{ needs.check-version.outputs.version }}"
-
-      - name: Lint & Format Check
-        run: |
-          npm run lint || true
-          npm run format -- --check || true
-
-      - name: Build Verification
-        run: npm run build
-
-      - name: Test Suite
-        run: echo "✅ Tests will be added later" || true
-
-  create-release:
-    name: Create GitHub Release
-    runs-on: ubuntu-latest
-    needs: [check-version, validate-release]
-    if: needs.check-version.outputs.should_release == 'true'
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Extract Release Notes
-        id: notes
-        run: |
-          VERSION="${{ needs.check-version.outputs.version }}"
-
-          # Extract notes between version headers
-          NOTES=$(sed -n "/^## \[$VERSION\]/,/^## \[/p" CHANGELOG.md | head -n -1 | tail -n +2)
-
-          # Escape for GitHub Actions
-          NOTES="${NOTES//'%'/'%25'}"
-          NOTES="${NOTES//$'\n'/'%0A'}"
-          NOTES="${NOTES//$'\r'/'%0D'}"
-
-          echo "notes=$NOTES" >> $GITHUB_OUTPUT
-
-      - name: Create Release Tag
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-
-          VERSION="${{ needs.check-version.outputs.version }}"
-          git tag -a "v$VERSION" -m "Release v$VERSION" || true
-          git push origin "v$VERSION" || true
-
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ needs.check-version.outputs.version }}
-          name: v${{ needs.check-version.outputs.version }}
-          body: ${{ steps.notes.outputs.notes }}
-          draft: false
-          prerelease: ${{ contains(needs.check-version.outputs.version, '-') }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  publish-release:
-    name: Publish Release
-    runs-on: ubuntu-latest
-    needs: [check-version, create-release]
-    if: needs.check-version.outputs.should_release == 'true'
-
-    steps:
-      - uses: actions/checkout@v4
+          echo "✅ Version format valid: $VERSION"
 
       - uses: actions/setup-node@v4
         with:
@@ -228,69 +48,76 @@ jobs:
 
       - name: Install Dependencies
         run: npm ci || npm install
+
+      - name: Validate Code Quality
+        run: npm run lint || true
 
       - name: Build Production Bundle
         run: npm run build
 
-      - name: Create Build Artifact
+      - name: Create Release Tag
         run: |
-          tar -czf containercar-${{ needs.check-version.outputs.version }}.tar.gz dist/
-
-      - name: Upload Artifact to Release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ needs.check-version.outputs.version }}
-          files: containercar-${{ needs.check-version.outputs.version }}.tar.gz
+          VERSION="${{ github.event.inputs.version }}"
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          
+          # Create annotated tag
+          git tag -a "v$VERSION" -m "Release v$VERSION" || true
+          
+          # Push tag to remote
+          git push origin "v$VERSION" || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Notify Release
+      - name: Create Release Archive
         run: |
-          echo "✅ Release v${{ needs.check-version.outputs.version }} Published"
-          echo "📦 Type: ${{ needs.check-version.outputs.version_type }}"
-          echo "🔗 URL: https://github.com/${{ github.repository }}/releases/tag/v${{ needs.check-version.outputs.version }}"
+          mkdir -p release-artifacts
+          cd dist/
+          tar -czf ../release-artifacts/containercar-${{ github.event.inputs.version }}.tar.gz .
+          cd ../release-artifacts
+          ls -lh
 
-  slack-notification:
-    name: Notify Slack
-    runs-on: ubuntu-latest
-    needs: [check-version, publish-release]
-    if: needs.check-version.outputs.should_release == 'true'
-
-    steps:
-      - uses: slackapi/slack-github-action@v1.24.0
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
         with:
-          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
-          payload: |
-            {
-              "text": "🚀 Release Published: v${{ needs.check-version.outputs.version }}",
-              "blocks": [
-                {
-                  "type": "header",
-                  "text": {
-                    "type": "plain_text",
-                    "text": "📦 Release v${{ needs.check-version.outputs.version }}"
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Type:*\n${{ needs.check-version.outputs.version_type }}"
-                    },
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Version:*\nv${{ needs.check-version.outputs.version }}"
-                    }
-                  ]
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://github.com/${{ github.repository }}/releases/tag/v${{ needs.check-version.outputs.version }}|View Release>"
-                  }
-                }
-              ]
-            }
-        if: always()
+          tag_name: v${{ github.event.inputs.version }}
+          name: v${{ github.event.inputs.version }}
+          body: |
+            # Release v${{ github.event.inputs.version }}
+            
+            **Release Type:** ${{ github.event.inputs.release_type }}
+            
+            ## What's New
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for full details.
+            
+            ## Installation
+            ```bash
+            npm install
+            npm run build
+            ```
+            
+            ## Download
+            - **Build Artifact:** containercar-${{ github.event.inputs.version }}.tar.gz
+            
+            ## Links
+            - [Repository](https://github.com/${{ github.repository }})
+            - [Issues](https://github.com/${{ github.repository }}/issues)
+            - [Pull Requests](https://github.com/${{ github.repository }}/pulls)
+          files: |
+            release-artifacts/containercar-${{ github.event.inputs.version }}.tar.gz
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish Release Summary
+        run: |
+          echo "✅ Release Created Successfully!"
+          echo ""
+          echo "📦 Release Information:"
+          echo "  - Version: v${{ github.event.inputs.version }}"
+          echo "  - Type: ${{ github.event.inputs.release_type }}"
+          echo "  - URL: https://github.com/${{ github.repository }}/releases/tag/v${{ github.event.inputs.version }}"
+          echo ""
+          echo "📥 Download:"
+          echo "  - Build: https://github.com/${{ github.repository }}/releases/download/v${{ github.event.inputs.version }}/containercar-${{ github.event.inputs.version }}.tar.gz"
