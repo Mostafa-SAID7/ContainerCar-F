@@ -1,5 +1,6 @@
 import { Container, Menu } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { label: "Browse", href: "#browse" },
