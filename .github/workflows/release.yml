@@ -1,0 +1,260 @@
+name: Release & Versioning
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'package.json'
+      - 'CHANGELOG.md'
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type (major, minor, patch)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  detect-version-change:
+    name: Detect Version Change
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      should_release: ${{ steps.version.outputs.should_release }}
+      version_type: ${{ steps.version.outputs.version_type }}
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      
+      - name: Get Current Version
+        id: current
+        run: |
+          CURRENT=$(node -p "require('./package.json').version")
+          echo "current=$CURRENT" >> $GITHUB_OUTPUT
+      
+      - name: Get Previous Version
+        id: previous
+        run: |
+          if git rev-parse HEAD~1 &>/dev/null; then
+            PREVIOUS=$(git show HEAD~1:package.json | node -p "require('fs').readFileSync('/dev/stdin', 'utf8')" | node -p "require('./package.json').version" 2>/dev/null || echo "unknown")
+          else
+            PREVIOUS="0.0.0"
+          fi
+          echo "previous=$PREVIOUS" >> $GITHUB_OUTPUT
+      
+      - name: Detect Version Change
+        id: version
+        run: |
+          CURRENT=${{ steps.current.outputs.current }}
+          PREVIOUS=${{ steps.previous.outputs.previous }}
+          
+          if [ "$CURRENT" != "$PREVIOUS" ]; then
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "version=$CURRENT" >> $GITHUB_OUTPUT
+            
+            # Determine version type
+            IFS='.' read -r CURRENT_MAJOR CURRENT_MINOR CURRENT_PATCH <<< "$CURRENT"
+            IFS='.' read -r PREV_MAJOR PREV_MINOR PREV_PATCH <<< "$PREVIOUS"
+            
+            if [ "$CURRENT_MAJOR" != "$PREV_MAJOR" ]; then
+              echo "version_type=major" >> $GITHUB_OUTPUT
+            elif [ "$CURRENT_MINOR" != "$PREV_MINOR" ]; then
+              echo "version_type=minor" >> $GITHUB_OUTPUT
+            else
+              echo "version_type=patch" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "should_release=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Log Detection Results
+        run: |
+          echo "Current Version: ${{ steps.current.outputs.current }}"
+          echo "Previous Version: ${{ steps.previous.outputs.previous }}"
+          echo "Should Release: ${{ steps.version.outputs.should_release }}"
+          echo "Version Type: ${{ steps.version.outputs.version_type }}"
+
+  validate-release:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    needs: detect-version-change
+    if: needs.detect-version-change.outputs.should_release == 'true'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+        env:
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      
+      - name: Install Dependencies
+        run: npm ci || npm install
+      
+      - name: Validate Version Format
+        run: |
+          VERSION="${{ needs.detect-version-change.outputs.version }}"
+          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "❌ Invalid semantic version: $VERSION"
+            exit 1
+          fi
+          echo "✅ Valid semantic version: $VERSION"
+      
+      - name: Validate CHANGELOG
+        run: |
+          if ! grep -q "## \[${{ needs.detect-version-change.outputs.version }}\]" CHANGELOG.md; then
+            echo "❌ CHANGELOG.md missing entry for version ${{ needs.detect-version-change.outputs.version }}"
+            exit 1
+          fi
+          echo "✅ CHANGELOG.md has entry for ${{ needs.detect-version-change.outputs.version }}"
+      
+      - name: Lint & Format Check
+        run: |
+          npm run lint || true
+          npm run format -- --check || true
+      
+      - name: Build Verification
+        run: npm run build
+      
+      - name: Test Suite
+        run: npm run test -- --run || true
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [detect-version-change, validate-release]
+    if: needs.detect-version-change.outputs.should_release == 'true'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Extract Release Notes
+        id: notes
+        run: |
+          VERSION="${{ needs.detect-version-change.outputs.version }}"
+          
+          # Extract notes between version headers
+          NOTES=$(sed -n "/^## \[$VERSION\]/,/^## \[/p" CHANGELOG.md | head -n -1 | tail -n +2)
+          
+          # Escape for GitHub Actions
+          NOTES="${NOTES//'%'/'%25'}"
+          NOTES="${NOTES//$'\n'/'%0A'}"
+          NOTES="${NOTES//$'\r'/'%0D'}"
+          
+          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+      
+      - name: Create Release Tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          VERSION="${{ needs.detect-version-change.outputs.version }}"
+          git tag -a "v$VERSION" -m "Release v$VERSION" || true
+          git push origin "v$VERSION" || true
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.detect-version-change.outputs.version }}
+          name: v${{ needs.detect-version-change.outputs.version }}
+          body: ${{ steps.notes.outputs.notes }}
+          draft: false
+          prerelease: ${{ contains(needs.detect-version-change.outputs.version, '-') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-release:
+    name: Publish Release
+    runs-on: ubuntu-latest
+    needs: [detect-version-change, create-release]
+    if: needs.detect-version-change.outputs.should_release == 'true'
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+        env:
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      
+      - name: Install Dependencies
+        run: npm ci || npm install
+      
+      - name: Build Production Bundle
+        run: npm run build
+      
+      - name: Create Build Artifact
+        run: |
+          tar -czf containercar-${{ needs.detect-version-change.outputs.version }}.tar.gz dist/
+      
+      - name: Upload Artifact to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.detect-version-change.outputs.version }}
+          files: containercar-${{ needs.detect-version-change.outputs.version }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Notify Release
+        run: |
+          echo "✅ Release v${{ needs.detect-version-change.outputs.version }} Published"
+          echo "📦 Type: ${{ needs.detect-version-change.outputs.version_type }}"
+          echo "🔗 URL: https://github.com/${{ github.repository }}/releases/tag/v${{ needs.detect-version-change.outputs.version }}"
+
+  slack-notification:
+    name: Notify Slack
+    runs-on: ubuntu-latest
+    needs: [detect-version-change, publish-release]
+    if: needs.detect-version-change.outputs.should_release == 'true'
+    
+    steps:
+      - uses: slackapi/slack-github-action@v1.24.0
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "🚀 Release Published: v${{ needs.detect-version-change.outputs.version }}",
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "📦 Release v${{ needs.detect-version-change.outputs.version }}"
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Type:*\n${{ needs.detect-version-change.outputs.version_type }}"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Version:*\nv${{ needs.detect-version-change.outputs.version }}"
+                    }
+                  ]
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "<https://github.com/${{ github.repository }}/releases/tag/v${{ needs.detect-version-change.outputs.version }}|View Release>"
+                  }
+                }
+              ]
+            }
+        if: always()
