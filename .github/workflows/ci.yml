@@ -24,7 +24,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       
@@ -55,7 +54,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       
@@ -97,7 +95,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       
@@ -131,7 +128,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       
@@ -165,7 +161,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       
