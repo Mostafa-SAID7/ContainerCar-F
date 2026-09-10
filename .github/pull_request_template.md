@@ -25,9 +25,9 @@ Closes #
 
 <!-- Describe your changes in detail -->
 
-- 
-- 
-- 
+-
+-
+-
 
 ## 🧪 Testing
 
@@ -45,9 +45,11 @@ Closes #
 <!-- Add screenshots or videos if this is a UI change -->
 
 ### Before
+
 <!-- Screenshot or video of before state -->
 
 ### After
+
 <!-- Screenshot or video of after state -->
 
 ## ✅ Checklist
@@ -74,6 +76,7 @@ Closes #
 ---
 
 **Remember to:**
+
 - Keep PR focused on a single feature/fix
 - Reference related issues
 - Update documentation

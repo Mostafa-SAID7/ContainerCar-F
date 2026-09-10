@@ -9,12 +9,14 @@ Complete guide to set up your local development environment for ContainerCar.
 Before starting, ensure you have:
 
 ### Required
+
 - **Node.js** 18+ or **Bun** runtime
 - **npm** 9+ or **bun** 1+
 - **Git** 2.30+
 - **Code editor** (VS Code recommended)
 
 ### Optional
+
 - **Docker** (for containerized development)
 - **pnpm** (alternative package manager)
 
@@ -324,7 +326,7 @@ Create `.vscode/launch.json`:
 ```typescript
 // Development-only logs
 if (import.meta.env.DEV) {
-  console.log('Debug info:', data);
+  console.log("Debug info:", data);
 }
 ```
 
@@ -525,12 +527,12 @@ npm run build -- --mode analyze
 
 ### Deployment Options
 
-| Platform | Steps |
-|----------|-------|
-| **Vercel** | Connect GitHub repo → auto-deploy |
-| **Netlify** | Connect GitHub repo → auto-deploy |
-| **GitHub Pages** | Push to `gh-pages` branch |
-| **Docker** | Build image → run container |
+| Platform         | Steps                             |
+| ---------------- | --------------------------------- |
+| **Vercel**       | Connect GitHub repo → auto-deploy |
+| **Netlify**      | Connect GitHub repo → auto-deploy |
+| **GitHub Pages** | Push to `gh-pages` branch         |
+| **Docker**       | Build image → run container       |
 
 ---
 

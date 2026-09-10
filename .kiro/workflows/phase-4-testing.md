@@ -3,6 +3,7 @@
 ## Unit Tests
 
 ### Business Filters Tests
+
 - [ ] `useBusinessFilters.test.ts`
   - Filter by budget range
   - Filter by category
@@ -12,6 +13,7 @@
   - Save/load from localStorage
 
 ### Business Service Tests
+
 - [ ] `businesses.service.test.ts`
   - `getBusinesses()` returns correct data
   - `getBusinessById()` returns single business
@@ -20,6 +22,7 @@
   - Handle not found cases
 
 ### Business Components Tests
+
 - [ ] `BusinessCard.test.tsx`
   - Renders business name
   - Displays investment amount
@@ -53,6 +56,7 @@
   - Handles edge cases (0%, 100%)
 
 ### Franchise Tests
+
 - [ ] `franchises.service.test.ts`
   - All franchise data methods work
   - Filtering by investment works
@@ -64,6 +68,7 @@
   - `ApplicationForm.test.tsx`
 
 ### Supplier Tests
+
 - [ ] `suppliers.service.test.ts`
   - Get suppliers works
   - Filter by category works
@@ -76,6 +81,7 @@
   - `QuotationForm.test.tsx`
 
 ### Utility Function Tests
+
 - [ ] `formatting.test.ts`
   - Format currency (EGP)
   - Format numbers
@@ -98,6 +104,7 @@
 ## Integration Tests
 
 ### Business Feature Flow
+
 - [ ] `business-marketplace.integration.test.tsx`
   - User browses businesses
   - User applies filters
@@ -106,6 +113,7 @@
   - User clicks "Start My Business"
 
 ### Comparison Feature Flow
+
 - [ ] `comparison.integration.test.tsx`
   - Select first business
   - Select second business
@@ -115,6 +123,7 @@
   - Budget fit shows correctly
 
 ### Application Flow
+
 - [ ] `start-business-flow.integration.test.tsx`
   - Click "Start My Business"
   - Confirm business selection
@@ -126,6 +135,7 @@
   - See confirmation
 
 ### Franchise Application Flow
+
 - [ ] `franchise-application.integration.test.tsx`
   - Browse franchises
   - View detail
@@ -134,6 +144,7 @@
   - Receive confirmation
 
 ### Supplier Quotation Flow
+
 - [ ] `supplier-quotation.integration.test.tsx`
   - Browse suppliers
   - View detail
@@ -147,6 +158,7 @@
 ## E2E Tests (Future)
 
 ### Homepage to Business Detail
+
 ```gherkin
 Feature: Business Discovery
   Scenario: User finds business matching budget
@@ -162,6 +174,7 @@ Feature: Business Discovery
 ```
 
 ### Comparison Feature
+
 ```gherkin
 Feature: Business Comparison
   Scenario: User compares three businesses
@@ -179,6 +192,7 @@ Feature: Business Comparison
 ## Manual Testing Checklist
 
 ### Desktop Testing (Chrome, Firefox, Safari)
+
 - [ ] Businesses page loads in <2 seconds
 - [ ] Filters respond in <500ms
 - [ ] Business detail page loads in <1 second
@@ -188,6 +202,7 @@ Feature: Business Comparison
 - [ ] No console errors
 
 ### Mobile Testing (iOS, Android)
+
 - [ ] Layout responsive at all breakpoints
 - [ ] Touch targets large enough (48px)
 - [ ] No horizontal overflow
@@ -196,12 +211,14 @@ Feature: Business Comparison
 - [ ] Forms usable on mobile keyboard
 
 ### Tablet Testing (iPad, Android Tablet)
+
 - [ ] Layout scales appropriately
 - [ ] Grid shows 2 columns
 - [ ] Sidebar accessible
 - [ ] Touch interactions work
 
 ### RTL Testing (Arabic)
+
 - [ ] Layout mirrored correctly
 - [ ] Numbers aligned right
 - [ ] Text right-aligned
@@ -209,6 +226,7 @@ Feature: Business Comparison
 - [ ] Dropdowns position correct
 
 ### Accessibility Testing
+
 - [ ] Keyboard navigation works (Tab through all elements)
 - [ ] Focus states visible
 - [ ] Screen reader announces buttons/links
@@ -217,6 +235,7 @@ Feature: Business Comparison
 - [ ] No focus traps
 
 ### Browser Compatibility
+
 - [ ] Chrome 120+
 - [ ] Firefox 121+
 - [ ] Safari 17+
@@ -225,6 +244,7 @@ Feature: Business Comparison
 - [ ] Mobile Safari
 
 ### Performance Testing
+
 - [ ] First Contentful Paint < 1.5s
 - [ ] Largest Contentful Paint < 2.5s
 - [ ] Cumulative Layout Shift < 0.1
@@ -232,6 +252,7 @@ Feature: Business Comparison
 - [ ] Bundle size < 500KB
 
 ### Image Testing
+
 - [ ] All images load
 - [ ] Lazy loading works
 - [ ] Responsive images work
@@ -261,28 +282,27 @@ Critical Paths: 100% coverage
 
 ```markdown
 ### Bug: [Title]
+
 **Severity**: Critical/High/Medium/Low
 **Component**: [Component Name]
-**Steps to Reproduce**:
-1. 
-2. 
-3. 
+**Steps to Reproduce**: 1. 2. 3.
 
-**Expected**: 
-**Actual**: 
+**Expected**:
+**Actual**:
 
-**Environment**: 
-- Browser: 
-- OS: 
-- Device: 
+**Environment**:
 
-**Screenshots/Video**: 
+- Browser:
+- OS:
+- Device:
 
-**Root Cause** (after investigation): 
+**Screenshots/Video**:
 
-**Fix**: 
+**Root Cause** (after investigation):
 
-**Verification**: 
+**Fix**:
+
+**Verification**:
 ```
 
 ---
@@ -290,6 +310,7 @@ Critical Paths: 100% coverage
 ## Test Execution Schedule
 
 ### Daily (During Development)
+
 ```bash
 npm run lint
 npm run format
@@ -298,6 +319,7 @@ npm run test
 ```
 
 ### Before Pull Request
+
 ```bash
 npm run test:coverage
 npm run test:e2e (manual testing checklist)
@@ -307,6 +329,7 @@ npm run build
 ```
 
 ### Before Deployment
+
 ```bash
 npm run test:all
 Manual smoke testing on staging
@@ -319,15 +342,15 @@ Cross-browser testing
 
 ## Quality Metrics
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Test Coverage | 80% | - | 🔄 |
-| ESLint Pass | 100% | - | 🔄 |
-| Accessibility Score | 95+ | - | 🔄 |
-| Lighthouse Performance | 90+ | - | 🔄 |
-| Bundle Size | <500KB | - | 🔄 |
-| Lighthouse Accessibility | 95+ | - | 🔄 |
-| Page Load Time | <2s | - | 🔄 |
+| Metric                   | Target | Current | Status |
+| ------------------------ | ------ | ------- | ------ |
+| Test Coverage            | 80%    | -       | 🔄     |
+| ESLint Pass              | 100%   | -       | 🔄     |
+| Accessibility Score      | 95+    | -       | 🔄     |
+| Lighthouse Performance   | 90+    | -       | 🔄     |
+| Bundle Size              | <500KB | -       | 🔄     |
+| Lighthouse Accessibility | 95+    | -       | 🔄     |
+| Page Load Time           | <2s    | -       | 🔄     |
 
 ---
 

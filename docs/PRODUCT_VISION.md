@@ -9,12 +9,14 @@
 ContainerCar transforms the entrepreneurial journey from scattered research across dozens of suppliers into a **structured, transparent business planning platform**.
 
 Instead of:
+
 - Researching equipment vendors separately
 - Comparing franchise opportunities across regions
 - Estimating operating costs manually
 - Finding suppliers one-by-one
 
 Users get:
+
 - **Complete business packages** with all requirements upfront
 - **Investment breakdowns** showing exactly what costs what
 - **Verified suppliers** for equipment and services
@@ -30,6 +32,7 @@ Users get:
 ### The Problem
 
 Entrepreneurs face:
+
 - 💰 **Unclear investment requirements** — No standardized information
 - 🔄 **Fragmented sourcing** — Visit 10+ suppliers for one business
 - 📍 **Location uncertainty** — Don't know operating constraints
@@ -40,6 +43,7 @@ Entrepreneurs face:
 ### The Solution
 
 ContainerCar provides:
+
 - ✅ **Standardized packages** — Clear investment, timeline, requirements
 - ✅ **Verified suppliers** — All equipment sourced from trusted partners
 - ✅ **Transparent pricing** — See exactly where every EGP goes
@@ -52,15 +56,18 @@ ContainerCar provides:
 ## 🎭 Target Users
 
 ### 1. Entrepreneur / Investor
+
 **Who**: Person with capital wanting to start a mobile business
 
 **Motivations**:
+
 - Limited time to research
 - Want structured, transparent information
 - Need setup guidance
 - Must verify suppliers
 
 **Goals**:
+
 - Find business matching their budget
 - Understand complete investment
 - Connect with suppliers
@@ -69,15 +76,18 @@ ContainerCar provides:
 ---
 
 ### 2. Franchise Owner / Brand
+
 **Who**: Company offering franchise opportunities
 
 **Motivations**:
+
 - Expand franchise network
 - Generate qualified leads
 - Automate lead qualification
 - Manage applications centrally
 
 **Goals**:
+
 - Create franchise listings
 - Receive structured business inquiries
 - Manage applications
@@ -86,15 +96,18 @@ ContainerCar provides:
 ---
 
 ### 3. Supplier
+
 **Who**: Equipment manufacturer, branding agency, vehicle builder
 
 **Motivations**:
+
 - Generate qualified B2B leads
 - Reduce cold outreach
 - Build credibility
 - Increase order volume
 
 **Goals**:
+
 - List products and services
 - Receive quotation requests
 - Connect with entrepreneurs
@@ -103,15 +116,18 @@ ContainerCar provides:
 ---
 
 ### 4. Platform Admin
+
 **Who**: ContainerCar team member
 
 **Motivations**:
+
 - Maintain quality
 - Prevent fraud
 - Manage community
 - Track metrics
 
 **Goals**:
+
 - Verify suppliers
 - Manage listings
 - Monitor applications
@@ -122,6 +138,7 @@ ContainerCar provides:
 ## 📊 Business Categories
 
 ### Food & Beverage
+
 - ☕ Coffee Truck
 - 🍔 Burger Truck
 - 🍕 Pizza Truck
@@ -130,6 +147,7 @@ ContainerCar provides:
 - 🥞 Breakfast Truck
 
 ### Services
+
 - 🚗 Mobile Car Wash
 - 🔧 Mobile Motorcycle Service
 - ✂️ Mobile Barber
@@ -137,6 +155,7 @@ ContainerCar provides:
 - 🛞 Mobile Tire Service
 
 ### Retail
+
 - 🛒 Mobile Grocery
 - 👕 Mobile Fashion
 - 💍 Mobile Accessories
@@ -146,18 +165,19 @@ ContainerCar provides:
 
 ## 🏪 Key Business Models
 
-| Model | Investment | Timeline | Support |
-|-------|-----------|----------|---------|
-| **Independent** | Flexible | 30-90 days | Self-managed |
-| **Franchise** | Fixed fee + royalty | 45-120 days | Brand support included |
-| **Turnkey** | Premium | 60-150 days | Full setup service |
-| **Franchise-Ready** | Lower | 30-60 days | Basic setup guide |
+| Model               | Investment          | Timeline    | Support                |
+| ------------------- | ------------------- | ----------- | ---------------------- |
+| **Independent**     | Flexible            | 30-90 days  | Self-managed           |
+| **Franchise**       | Fixed fee + royalty | 45-120 days | Brand support included |
+| **Turnkey**         | Premium             | 60-150 days | Full setup service     |
+| **Franchise-Ready** | Lower               | 30-60 days  | Basic setup guide      |
 
 ---
 
 ## 🎯 Core Features
 
 ### 1. Budget-First Discovery
+
 **Hero Experience**: "What's your budget?"
 
 ```
@@ -169,13 +189,16 @@ Sorted by: Budget fit, popularity, setup time
 ```
 
 ### 2. Business Marketplace
+
 - **Browse** complete opportunities
 - **Filter** by: budget, category, setup time, staff, franchise model
 - **Compare** up to 3 businesses
 - **View** investment breakdown, equipment, location requirements
 
 ### 3. Investment Breakdown
+
 Shows exactly where the budget goes:
+
 ```
 Container Vehicle      150,000 EGP
 Equipment               65,000 EGP
@@ -188,6 +211,7 @@ Estimated Total        270,000 EGP
 ```
 
 ### 4. Equipment Checklist
+
 ```
 ✓ Espresso Machine (2x)  — 35,000 EGP — Supplied by: Coffee Pro
 ✓ Refrigerator           — 12,000 EGP — Supplied by: Cool Systems
@@ -197,6 +221,7 @@ Estimated Total        270,000 EGP
 ```
 
 ### 5. Location Requirements
+
 ```
 Recommended Locations:
 ✓ Universities & Schools
@@ -213,6 +238,7 @@ Requirements:
 ```
 
 ### 6. Staff Requirements
+
 ```
 Team Size: 2-3 people
 
@@ -226,6 +252,7 @@ Training: Provided by franchise partner
 ```
 
 ### 7. Operating Costs
+
 ```
 Monthly Estimated Costs:
 
@@ -239,6 +266,7 @@ Total             42,000 EGP
 ```
 
 ### 8. Franchise Information
+
 ```
 Franchise Available
 
@@ -251,6 +279,7 @@ Support:            Ongoing operational assistance
 ```
 
 ### 9. Supplier Network
+
 ```
 Equipment Sourcing:
 
@@ -262,6 +291,7 @@ Branding            → Verified Supplier: BrandStudio
 ```
 
 ### 10. Business Comparison
+
 ```
 Compare up to 3 businesses side-by-side:
 
@@ -346,6 +376,7 @@ Complexity      Medium        High          Low
 ## 💰 Financial Model
 
 ### Revenue Streams
+
 1. **Premium Listings** — Franchises pay for featured placement
 2. **Lead Generation** — Suppliers pay commission on leads
 3. **Subscription** — Franchise owners pay monthly dashboard fee
@@ -353,6 +384,7 @@ Complexity      Medium        High          Low
 5. **Advertising** — Brand partnerships and sponsored content
 
 ### Pricing (Proposed)
+
 - **Entrepreneur/Investor** — FREE to use platform
 - **Franchise Listing** — 500-2,000 EGP/month
 - **Supplier Tools** — 1,000-3,000 EGP/month
@@ -363,6 +395,7 @@ Complexity      Medium        High          Low
 ## 🛡️ Trust & Verification
 
 All suppliers and franchises undergo:
+
 - ✅ Business verification
 - ✅ Credential review
 - ✅ Contact verification
@@ -374,6 +407,7 @@ All suppliers and franchises undergo:
 ## 📈 Success Metrics
 
 ### Primary KPIs
+
 - Monthly Active Users (entrepreneurs)
 - Applications submitted
 - Completed transactions
@@ -382,6 +416,7 @@ All suppliers and franchises undergo:
 - Average deal value
 
 ### Secondary KPIs
+
 - Time-to-launch (days)
 - Budget accuracy
 - Setup completion rate
@@ -395,6 +430,7 @@ All suppliers and franchises undergo:
 **Important**: ContainerCar provides planning tools, not financial advice.
 
 All financial information is:
+
 - Estimated based on sample data
 - Subject to change by location
 - Not guaranteed profitability
@@ -407,24 +443,28 @@ Users must conduct independent research and due diligence.
 ## 🔮 Future Roadmap
 
 ### Phase 1 (MVP)
+
 - Business marketplace
 - Budget discovery
 - Supplier network
 - Basic dashboards
 
 ### Phase 2
+
 - Payment integration
 - Real-time quotes
 - Appointment scheduling
 - Review system
 
 ### Phase 3
+
 - Financing partnerships
 - Insurance integration
 - Legal document templates
 - Mobile app
 
 ### Phase 4
+
 - AI-powered recommendations
 - Predictive analytics
 - Franchise analytics

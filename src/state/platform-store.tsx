@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import type { BusinessApplication } from "@/services/api";
 
 interface PlatformState {
@@ -78,7 +86,15 @@ export function PlatformProvider({ children }: { children: ReactNode }) {
   );
 
   const value = useMemo(
-    () => ({ ...state, hydrated, setBudget, toggleCompare, clearCompare, toggleSaved, setApplication }),
+    () => ({
+      ...state,
+      hydrated,
+      setBudget,
+      toggleCompare,
+      clearCompare,
+      toggleSaved,
+      setApplication,
+    }),
     [state, hydrated, setBudget, toggleCompare, clearCompare, toggleSaved, setApplication],
   );
 

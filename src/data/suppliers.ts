@@ -42,8 +42,16 @@ export const suppliers: Supplier[] = [
     ],
     supportedBusinesses: ["coffee-truck"],
     reviews: [
-      { author: "Sample review — Ahmed S.", text: "Installation on the unit was handled in one day.", rating: 5 },
-      { author: "Sample review — Nour M.", text: "Service visit came within the promised window.", rating: 4 },
+      {
+        author: "Sample review — Ahmed S.",
+        text: "Installation on the unit was handled in one day.",
+        rating: 5,
+      },
+      {
+        author: "Sample review — Nour M.",
+        text: "Service visit came within the promised window.",
+        rating: 4,
+      },
     ],
   },
   {
@@ -65,7 +73,13 @@ export const suppliers: Supplier[] = [
       { name: "Stone gas oven", startingPrice: 45000, leadTimeDays: 21 },
     ],
     supportedBusinesses: ["burger-truck", "pizza-truck", "juice-truck"],
-    reviews: [{ author: "Sample review — Mahmoud K.", text: "Build quality is solid for daily use.", rating: 5 }],
+    reviews: [
+      {
+        author: "Sample review — Mahmoud K.",
+        text: "Build quality is solid for daily use.",
+        rating: 5,
+      },
+    ],
   },
   {
     id: "delta-cooling",
@@ -78,14 +92,17 @@ export const suppliers: Supplier[] = [
     startingPrice: 9000,
     leadTime: "5–12 days",
     minimumOrder: "1 unit",
-    about: "Refrigeration and cold chain equipment with maintenance contracts across the Delta region.",
+    about:
+      "Refrigeration and cold chain equipment with maintenance contracts across the Delta region.",
     products: [
       { name: "Under-counter refrigerator", startingPrice: 9000, leadTimeDays: 7 },
       { name: "Display chiller", startingPrice: 12000, leadTimeDays: 9 },
       { name: "Upright freezer", startingPrice: 16000, leadTimeDays: 10 },
     ],
     supportedBusinesses: ["coffee-truck", "burger-truck", "juice-truck", "pizza-truck"],
-    reviews: [{ author: "Sample review — Sara A.", text: "Maintenance response was quick.", rating: 5 }],
+    reviews: [
+      { author: "Sample review — Sara A.", text: "Maintenance response was quick.", rating: 5 },
+    ],
   },
   {
     id: "nile-power-systems",
@@ -104,8 +121,21 @@ export const suppliers: Supplier[] = [
       { name: "Silent generator 5kVA", startingPrice: 12000, leadTimeDays: 5 },
       { name: "Silent generator 8kVA", startingPrice: 18000, leadTimeDays: 7 },
     ],
-    supportedBusinesses: ["coffee-truck", "burger-truck", "juice-truck", "pizza-truck", "mobile-car-wash", "mobile-barber"],
-    reviews: [{ author: "Sample review — Hossam R.", text: "Noise level is acceptable in residential areas.", rating: 4 }],
+    supportedBusinesses: [
+      "coffee-truck",
+      "burger-truck",
+      "juice-truck",
+      "pizza-truck",
+      "mobile-car-wash",
+      "mobile-barber",
+    ],
+    reviews: [
+      {
+        author: "Sample review — Hossam R.",
+        text: "Noise level is acceptable in residential areas.",
+        rating: 4,
+      },
+    ],
   },
   {
     id: "smartpos-egypt",
@@ -118,14 +148,28 @@ export const suppliers: Supplier[] = [
     startingPrice: 5000,
     leadTime: "2–5 days",
     minimumOrder: "1 terminal",
-    about: "Point-of-sale terminals, receipt printers, and inventory software with Arabic and English interfaces.",
+    about:
+      "Point-of-sale terminals, receipt printers, and inventory software with Arabic and English interfaces.",
     products: [
       { name: "Countertop POS terminal", startingPrice: 8000, leadTimeDays: 3 },
       { name: "Handheld POS", startingPrice: 5000, leadTimeDays: 2 },
       { name: "Receipt printer", startingPrice: 2200, leadTimeDays: 2 },
     ],
-    supportedBusinesses: ["coffee-truck", "burger-truck", "juice-truck", "pizza-truck", "mobile-car-wash", "mobile-barber"],
-    reviews: [{ author: "Sample review — Dina F.", text: "Setup and staff training were included.", rating: 5 }],
+    supportedBusinesses: [
+      "coffee-truck",
+      "burger-truck",
+      "juice-truck",
+      "pizza-truck",
+      "mobile-car-wash",
+      "mobile-barber",
+    ],
+    reviews: [
+      {
+        author: "Sample review — Dina F.",
+        text: "Setup and staff training were included.",
+        rating: 5,
+      },
+    ],
   },
   {
     id: "mobile-unit-builders",
@@ -138,14 +182,21 @@ export const suppliers: Supplier[] = [
     startingPrice: 90000,
     leadTime: "25–45 days",
     minimumOrder: "1 unit",
-    about: "Container conversion workshop producing service windows, insulated interiors, and electrical fit-outs.",
+    about:
+      "Container conversion workshop producing service windows, insulated interiors, and electrical fit-outs.",
     products: [
       { name: "2.5m container unit", startingPrice: 90000, leadTimeDays: 25 },
       { name: "3m container unit", startingPrice: 150000, leadTimeDays: 35 },
       { name: "4m kitchen container unit", startingPrice: 165000, leadTimeDays: 45 },
     ],
     supportedBusinesses: ["coffee-truck", "mobile-car-wash", "mobile-barber"],
-    reviews: [{ author: "Sample review — Karim T.", text: "Delivered close to the quoted timeline.", rating: 4 }],
+    reviews: [
+      {
+        author: "Sample review — Karim T.",
+        text: "Delivered close to the quoted timeline.",
+        rating: 4,
+      },
+    ],
   },
   {
     id: "delta-packaging",
@@ -158,14 +209,27 @@ export const suppliers: Supplier[] = [
     startingPrice: 1200,
     leadTime: "5–15 days",
     minimumOrder: "500 units",
-    about: "Printed cups, boxes, vehicle wraps, and signage produced for mobile food and service businesses.",
+    about:
+      "Printed cups, boxes, vehicle wraps, and signage produced for mobile food and service businesses.",
     products: [
       { name: "Branded cups (1000 pcs)", startingPrice: 3500, leadTimeDays: 7 },
       { name: "Vehicle wrap", startingPrice: 12000, leadTimeDays: 12 },
       { name: "Illuminated menu board", startingPrice: 6500, leadTimeDays: 10 },
     ],
-    supportedBusinesses: ["coffee-truck", "burger-truck", "juice-truck", "pizza-truck", "mobile-barber"],
-    reviews: [{ author: "Sample review — Youssef H.", text: "Print quality was good, timeline slipped slightly.", rating: 4 }],
+    supportedBusinesses: [
+      "coffee-truck",
+      "burger-truck",
+      "juice-truck",
+      "pizza-truck",
+      "mobile-barber",
+    ],
+    reviews: [
+      {
+        author: "Sample review — Youssef H.",
+        text: "Print quality was good, timeline slipped slightly.",
+        rating: 4,
+      },
+    ],
   },
 ];
 

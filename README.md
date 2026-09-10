@@ -9,6 +9,7 @@ Start your entrepreneurial journey with a container-based business. Browse oppor
 ## ✨ Quick Start
 
 ### Prerequisites
+
 - **Node.js** 18+ or **Bun** runtime
 - **npm** or **bun** package manager
 
@@ -68,6 +69,7 @@ ContainerCar-F/
 ## 🎯 Core Features
 
 ### For Entrepreneurs
+
 - 💰 **Budget-First Discovery** — Find businesses matching your budget
 - 📋 **Complete Packages** — Investment breakdown, equipment, setup timeline
 - 🔄 **Business Comparison** — Compare up to 3 opportunities side-by-side
@@ -75,6 +77,7 @@ ContainerCar-F/
 - 🤝 **Supplier Network** — Connect with verified equipment providers
 
 ### For Franchise Partners & Suppliers
+
 - 📊 **Dashboard** — Manage listings and leads
 - 📈 **Analytics** — Track conversions and applications
 - 🔗 **Integration Ready** — Prepare for API connections
@@ -113,6 +116,7 @@ npm run format          # Format code with Prettier
 ## 🌍 Internationalization
 
 The platform supports:
+
 - 🇪🇬 **Arabic (RTL)** — Full RTL layout support
 - 🇬🇧 **English (LTR)** — Complete English interface
 
@@ -132,6 +136,7 @@ See [Architecture Guide](./docs/ARCHITECTURE.md) for detailed design specificati
 ## 🚀 Deployment
 
 The app is built as a static SPA. Deploy to:
+
 - **Vercel** — `npm run build` → auto-deploy
 - **Netlify** — Connect GitHub repo
 - **Any Static Host** — Build output in `dist/`

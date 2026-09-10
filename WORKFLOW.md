@@ -39,10 +39,11 @@ WORKFLOW
 **Responsibility**: Define scope and requirements
 
 #### 1.1 Issue Creation
+
 ```
 Location: GitHub Issues
 Template: Feature Request or Bug Report
-Fields: 
+Fields:
   - Title (clear, specific)
   - Description (what, why, acceptance criteria)
   - Related issues (avoid duplicates)
@@ -50,6 +51,7 @@ Fields:
 ```
 
 #### 1.2 Specification
+
 ```
 File: docs/specs/[feature-name].md
 Content:
@@ -61,6 +63,7 @@ Content:
 ```
 
 #### 1.3 Approval
+
 ```
 Review by: 2+ team members
 Check: Clear requirements, no ambiguity
@@ -76,6 +79,7 @@ Status: Ready for Design or Backlog
 **Responsibility**: Architect the solution
 
 #### 2.1 Technical Design
+
 ```
 File: docs/designs/[feature-name].md
 Covers:
@@ -87,6 +91,7 @@ Covers:
 ```
 
 #### 2.2 UI/UX Design
+
 ```
 Deliverable: Figma mockups or wireframes
 Content:
@@ -97,6 +102,7 @@ Content:
 ```
 
 #### 2.3 Implementation Plan
+
 ```
 File: docs/plans/[feature-name].md
 Details:
@@ -115,6 +121,7 @@ Details:
 **Responsibility**: Implement features
 
 #### 3.1 Branch Creation
+
 ```
 Branch naming: feature/[feature-name]
 From: main (updated)
@@ -125,6 +132,7 @@ Convention:
 ```
 
 #### 3.2 Feature Development
+
 ```
 Workflow:
   1. Create feature branch
@@ -135,6 +143,7 @@ Workflow:
 ```
 
 #### 3.3 Code Organization
+
 ```
 Structure:
   src/features/[name]/
@@ -146,6 +155,7 @@ Structure:
 ```
 
 #### 3.4 Local Testing
+
 ```
 Commands:
   npm run dev        # Start server
@@ -163,6 +173,7 @@ Commands:
 **Responsibility**: Verify quality and functionality
 
 #### 4.1 Unit Tests
+
 ```
 File: src/[feature]/[component].test.tsx
 Tools: Vitest + React Testing Library
@@ -170,6 +181,7 @@ Coverage: Core logic and edge cases
 ```
 
 #### 4.2 Integration Tests
+
 ```
 File: src/[feature]/[feature].integration.test.tsx
 Tests: Component interaction, data flow
@@ -177,6 +189,7 @@ Scope: Full feature workflows
 ```
 
 #### 4.3 Manual Testing
+
 ```
 Checklist:
   ✓ Desktop (Chrome, Firefox, Safari)
@@ -187,6 +200,7 @@ Checklist:
 ```
 
 #### 4.4 Performance Testing
+
 ```
 Metrics:
   - Page load time
@@ -204,6 +218,7 @@ Metrics:
 **Responsibility**: Code quality assessment
 
 #### 5.1 Prepare Pull Request
+
 ```
 Template: Use PR template from .github/
 Content:
@@ -215,6 +230,7 @@ Content:
 ```
 
 #### 5.2 Automated Checks
+
 ```
 Runs automatically on PR:
   ✓ ESLint (code quality)
@@ -224,6 +240,7 @@ Runs automatically on PR:
 ```
 
 #### 5.3 Code Review
+
 ```
 Reviewers: 2+ team members
 Checks:
@@ -235,6 +252,7 @@ Checks:
 ```
 
 #### 5.4 Feedback & Iteration
+
 ```
 Process:
   1. Address review comments
@@ -253,6 +271,7 @@ Process:
 **Responsibility**: Performance and user experience
 
 #### 6.1 Performance Audit
+
 ```
 Tools:
   - Chrome DevTools
@@ -268,6 +287,7 @@ Metrics:
 ```
 
 #### 6.2 UX Review
+
 ```
 Check:
   - Accessibility score
@@ -278,6 +298,7 @@ Check:
 ```
 
 #### 6.3 Optimization Tasks
+
 ```
 Create separate tickets for:
   - Performance improvements
@@ -295,6 +316,7 @@ Create separate tickets for:
 **Responsibility**: Knowledge transfer and clarity
 
 #### 7.1 Code Documentation
+
 ```
 What to document:
   - Complex algorithms
@@ -305,6 +327,7 @@ What to document:
 ```
 
 #### 7.2 User Documentation
+
 ```
 Files:
   - docs/FEATURE_GUIDE.md
@@ -314,6 +337,7 @@ Files:
 ```
 
 #### 7.3 Commit Documentation
+
 ```
 Requirement:
   - Clear commit messages
@@ -322,6 +346,7 @@ Requirement:
 ```
 
 #### 7.4 Changelog Update
+
 ```
 File: CHANGELOG.md
 Format:
@@ -340,6 +365,7 @@ Format:
 **Responsibility**: Release to production
 
 #### 8.1 Release Planning
+
 ```
 Decision:
   - Version number (semantic versioning)
@@ -349,6 +375,7 @@ Decision:
 ```
 
 #### 8.2 Release Preparation
+
 ```
 Tasks:
   - Update CHANGELOG.md
@@ -358,6 +385,7 @@ Tasks:
 ```
 
 #### 8.3 Deployment
+
 ```
 Steps:
   1. Merge PR to main
@@ -368,6 +396,7 @@ Steps:
 ```
 
 #### 8.4 Post-Deployment
+
 ```
 Checks:
   - Verify all features work
@@ -385,6 +414,7 @@ Checks:
 **Responsibility**: Track performance and issues
 
 #### 9.1 Performance Monitoring
+
 ```
 Track:
   - Page load times
@@ -394,6 +424,7 @@ Track:
 ```
 
 #### 9.2 Issue Monitoring
+
 ```
 Check:
   - Error logs
@@ -403,6 +434,7 @@ Check:
 ```
 
 #### 9.3 Analytics
+
 ```
 Measure:
   - Feature adoption
@@ -412,6 +444,7 @@ Measure:
 ```
 
 #### 9.4 Feedback Loop
+
 ```
 Process:
   1. Collect data
@@ -462,35 +495,45 @@ Week 5+: MONITORING
 ## 👥 Team Roles
 
 ### Product Owner
+
 **Responsibility**: Define requirements and priorities
+
 - Create specifications
 - Approve designs
 - Prioritize backlog
 - Accept completed features
 
 ### Architect
+
 **Responsibility**: Design technical solutions
+
 - Create design documents
 - Review technical approach
 - Ensure scalability
 - Mentor developers
 
 ### Frontend Developer
+
 **Responsibility**: Implement features
+
 - Write clean code
 - Follow patterns
 - Test thoroughly
 - Document code
 
 ### QA Engineer
+
 **Responsibility**: Verify quality
+
 - Execute test plans
 - Find bugs
 - Report issues
 - Verify fixes
 
 ### DevOps/Release Manager
+
 **Responsibility**: Deployment and monitoring
+
 - Prepare releases
 - Deploy to production
 - Monitor performance
@@ -527,11 +570,13 @@ main            (production-ready)
 ## ✅ Quality Gates
 
 ### Before Development
+
 - [ ] Specification approved
 - [ ] Design reviewed
 - [ ] Dependencies identified
 
 ### Before Review
+
 - [ ] All tests pass
 - [ ] Code formatted
 - [ ] Linter passes
@@ -539,12 +584,14 @@ main            (production-ready)
 - [ ] No console errors
 
 ### Before Merge
+
 - [ ] 2+ approvals
 - [ ] All comments resolved
 - [ ] Tests verified
 - [ ] Documentation complete
 
 ### Before Deployment
+
 - [ ] Release notes ready
 - [ ] Version updated
 - [ ] Changelog updated
@@ -594,6 +641,7 @@ main            (production-ready)
    - Low: Minor issue
 
 2. **Create Hotfix Branch**
+
    ```
    git checkout -b hotfix/issue-name
    ```

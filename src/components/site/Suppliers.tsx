@@ -9,8 +9,7 @@ export function Suppliers() {
         Verified suppliers
       </h2>
       <p className="mt-3 max-w-xl text-muted-foreground">
-        Equipment, fit-out and fabrication partners with published lead times and starting
-        prices.
+        Equipment, fit-out and fabrication partners with published lead times and starting prices.
       </p>
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

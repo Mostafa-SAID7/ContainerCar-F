@@ -5,6 +5,7 @@
 ### 3.1 BUSINESSES FEATURE DEVELOPMENT
 
 #### Component Implementation
+
 - [ ] Create `BusinessCard.tsx` component
   - Display business image, name, investment, setup time
   - Show category badge and popularity badge
@@ -93,6 +94,7 @@
   - Color coding: green (100%), orange (80-99%), red (<80%)
 
 #### Hook Implementation
+
 - [ ] Implement `useBusinesses.ts`
   - Query businesses with filters
   - Handle loading, error, success states
@@ -111,6 +113,7 @@
   - Validate filter values
 
 #### Service Implementation
+
 - [ ] Create `businesses.service.ts`
   - `getBusinesses(filters)` → fetch + filter mock data
   - `getBusinessById(id)` → return single business
@@ -118,6 +121,7 @@
   - `calculateBudgetFit(business, userBudget)` → percentage
 
 #### Type Definitions
+
 - [ ] Create `business.types.ts`
   - Business interface
   - Equipment interface
@@ -126,6 +130,7 @@
   - API response types
 
 #### Routes
+
 - [ ] Create `/businesses` page
   - Display BusinessGrid with filters
   - Implement pagination
@@ -147,6 +152,7 @@
 ### 3.2 FRANCHISES FEATURE DEVELOPMENT
 
 #### Component Implementation
+
 - [ ] Create `FranchiseCard.tsx`
 - [ ] Create `FranchiseGrid.tsx`
 - [ ] Create `FranchiseDetail.tsx`
@@ -155,13 +161,16 @@
 - [ ] Create `ApplicationForm.tsx`
 
 #### Hook Implementation
+
 - [ ] Implement `useFranchises.ts`
 - [ ] Implement `useFranchiseDetail.ts`
 
 #### Service Implementation
+
 - [ ] Create `franchises.service.ts`
 
 #### Routes
+
 - [ ] Create `/franchises` page
 - [ ] Create `/franchises/[id]` page
 
@@ -170,6 +179,7 @@
 ### 3.3 SUPPLIERS FEATURE DEVELOPMENT
 
 #### Component Implementation
+
 - [ ] Create `SupplierCard.tsx`
 - [ ] Create `SupplierGrid.tsx`
 - [ ] Create `SupplierDetail.tsx`
@@ -179,13 +189,16 @@
 - [ ] Create `RatingDisplay.tsx`
 
 #### Hook Implementation
+
 - [ ] Implement `useSuppliers.ts`
 - [ ] Implement `useSupplierDetail.ts`
 
 #### Service Implementation
+
 - [ ] Create `suppliers.service.ts`
 
 #### Routes
+
 - [ ] Create `/suppliers` page
 - [ ] Create `/suppliers/[id]` page
 
@@ -194,24 +207,28 @@
 ## Code Quality Standards
 
 ### ESLint Checks
+
 - [ ] No `any` types used without justification
 - [ ] All functions have return types
 - [ ] Props interfaces always defined
 - [ ] No unused imports/variables
 
 ### Prettier Formatting
+
 - [ ] All files formatted
 - [ ] Consistent indentation (2 spaces)
 - [ ] No line length > 100 chars
 - [ ] Consistent quote usage (double quotes)
 
 ### TypeScript Compliance
+
 - [ ] No `unknown` type without casting
 - [ ] Proper error typing
 - [ ] Exhaustive switch statements
 - [ ] All event handlers typed
 
 ### Component Standards
+
 - [ ] Named exports only (no default)
 - [ ] Props always in interface
 - [ ] Memoization for expensive renders
@@ -239,6 +256,7 @@ mkdir -p src/data/{businesses,franchises,suppliers,equipment}
 ## Mock Data Setup
 
 ### Create Mock Datasets
+
 - [ ] `src/data/businesses.ts` — 20+ business opportunities
 - [ ] `src/data/franchises.ts` — 15+ franchise options
 - [ ] `src/data/suppliers.ts` — 50+ suppliers
@@ -246,6 +264,7 @@ mkdir -p src/data/{businesses,franchises,suppliers,equipment}
 - [ ] `src/data/locations.ts` — Location types
 
 ### Data Completeness Checklist
+
 - [ ] All businesses have full details
 - [ ] All suppliers have realistic data
 - [ ] Images are real and relevant
@@ -268,6 +287,7 @@ mkdir -p src/data/{businesses,franchises,suppliers,equipment}
 ## Responsive Design Implementation
 
 ### Mobile (<640px)
+
 - [ ] BusinessCard: full width
 - [ ] Filter: drawer/modal
 - [ ] Grid: 1 column
@@ -275,6 +295,7 @@ mkdir -p src/data/{businesses,franchises,suppliers,equipment}
 - [ ] Navigation: bottom nav
 
 ### Tablet (640-1024px)
+
 - [ ] BusinessCard: 2 columns
 - [ ] Filter: sidebar collapses at top
 - [ ] Grid: 2 columns
@@ -282,6 +303,7 @@ mkdir -p src/data/{businesses,franchises,suppliers,equipment}
 - [ ] Navigation: sidebar
 
 ### Desktop (>1024px)
+
 - [ ] BusinessCard: 3 columns
 - [ ] Filter: persistent sidebar
 - [ ] Grid: 3 columns

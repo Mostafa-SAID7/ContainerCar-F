@@ -7,6 +7,7 @@
 **Specification ID**: SPEC-001-BUSINESSES
 
 #### Requirements
+
 - Browse all available business opportunities
 - Filter by budget, category, setup time, staff requirements
 - View complete business details
@@ -71,6 +72,7 @@ Acceptance Criteria:
 ```
 
 #### Acceptance Criteria
+
 - [ ] Businesses can be filtered by 5+ criteria
 - [ ] Performance: Page load < 2 seconds
 - [ ] Performance: Filter results < 500ms
@@ -86,6 +88,7 @@ Acceptance Criteria:
 **Specification ID**: SPEC-002-FRANCHISES
 
 #### Requirements
+
 - Browse franchise opportunities
 - View franchise details and requirements
 - See investment and fee structure
@@ -108,6 +111,7 @@ Acceptance Criteria:
 ```
 
 #### Acceptance Criteria
+
 - [ ] Display franchise listings with full details
 - [ ] Enable filtering by category and investment
 - [ ] Support messaging system
@@ -122,6 +126,7 @@ Acceptance Criteria:
 **Specification ID**: SPEC-003-SUPPLIERS
 
 #### Requirements
+
 - Display verified suppliers
 - Filter by category and business type
 - View supplier details and products
@@ -145,6 +150,7 @@ Acceptance Criteria:
 ```
 
 #### Acceptance Criteria
+
 - [ ] Supplier directory with 50+ initial suppliers
 - [ ] Filtering by category, location, rating
 - [ ] Quotation request system
@@ -157,6 +163,7 @@ Acceptance Criteria:
 ## Data Models
 
 ### Business
+
 ```typescript
 interface Business {
   id: string;
@@ -176,13 +183,14 @@ interface Business {
   suppliers: Supplier[];
   images: string[];
   budgetFitScore: number;
-  status: 'active' | 'archived' | 'draft';
+  status: "active" | "archived" | "draft";
   createdAt: Date;
   updatedAt: Date;
 }
 ```
 
 ### Franchise
+
 ```typescript
 interface Franchise {
   id: string;
@@ -202,6 +210,7 @@ interface Franchise {
 ```
 
 ### Supplier
+
 ```typescript
 interface Supplier {
   id: string;
@@ -220,6 +229,7 @@ interface Supplier {
 ---
 
 ## Dependencies
+
 - React Query for data fetching
 - TanStack Router for navigation
 - Tailwind CSS for styling
@@ -227,13 +237,14 @@ interface Supplier {
 
 ## Risks & Mitigations
 
-| Risk | Impact | Mitigation |
-|------|--------|-----------|
-| Slow data loading | Poor UX | Implement pagination + caching |
-| Missing filter options | User frustration | Prioritize filters by usage |
+| Risk                         | Impact               | Mitigation                     |
+| ---------------------------- | -------------------- | ------------------------------ |
+| Slow data loading            | Poor UX              | Implement pagination + caching |
+| Missing filter options       | User frustration     | Prioritize filters by usage    |
 | Mobile responsiveness issues | Mobile users blocked | Test on multiple devices early |
 
 ## Estimated Effort
+
 - Businesses: 40 hours
 - Franchises: 30 hours
 - Suppliers: 25 hours

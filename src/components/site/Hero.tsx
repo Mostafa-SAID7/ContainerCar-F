@@ -9,8 +9,16 @@ const minInvestment = Math.min(...businesses.map((b) => b.investment));
 
 const stats = [
   { icon: Wallet, label: "Starting from", value: formatEGP(minInvestment) },
-  { icon: Timer, label: "Fastest setup", value: `${Math.min(...businesses.map((b) => b.setupDays))} days` },
-  { icon: ShieldCheck, label: "Verified suppliers", value: `${suppliers.filter((s) => s.verified).length}` },
+  {
+    icon: Timer,
+    label: "Fastest setup",
+    value: `${Math.min(...businesses.map((b) => b.setupDays))} days`,
+  },
+  {
+    icon: ShieldCheck,
+    label: "Verified suppliers",
+    value: `${suppliers.filter((s) => s.verified).length}`,
+  },
 ];
 
 export function Hero() {
@@ -34,8 +42,8 @@ export function Hero() {
         </h1>
 
         <p className="mt-5 max-w-2xl text-lg text-surface-foreground/75">
-          Compare investment, setup time, staffing and equipment for ready-to-run mobile
-          units — then connect with verified suppliers and franchise brands.
+          Compare investment, setup time, staffing and equipment for ready-to-run mobile units —
+          then connect with verified suppliers and franchise brands.
         </p>
 
         <div className="mt-9 flex flex-wrap gap-3">

@@ -73,9 +73,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ContainerCar — Container Business Marketplace" },
-      { name: "description", content: "Ready-to-run container businesses, franchise brands and verified suppliers." },
+      {
+        name: "description",
+        content: "Ready-to-run container businesses, franchise brands and verified suppliers.",
+      },
       { property: "og:title", content: "ContainerCar — Container Business Marketplace" },
-      { property: "og:description", content: "Ready-to-run container businesses, franchise brands and verified suppliers." },
+      {
+        property: "og:description",
+        content: "Ready-to-run container businesses, franchise brands and verified suppliers.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

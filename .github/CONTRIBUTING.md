@@ -65,6 +65,7 @@ chore/[description]      # Maintenance, deps
 ```
 
 **Examples**:
+
 - `feature/budget-calculator`
 - `bugfix/mobile-navigation`
 - `docs/api-setup`
@@ -96,6 +97,7 @@ type(scope): description
 **Types**: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`
 
 **Examples**:
+
 ```
 feat(businesses): add filter by budget range
 fix(dashboard): resolve budget calculation error
@@ -142,9 +144,11 @@ git push origin feature/your-feature-name
 
 ```markdown
 ## Description
+
 Brief summary of what this PR does.
 
 ## Type of Change
+
 - [ ] Feature (new functionality)
 - [ ] Bug fix
 - [ ] Documentation update
@@ -152,21 +156,26 @@ Brief summary of what this PR does.
 - [ ] Breaking change
 
 ## Related Issues
+
 Closes #123
 
 ## Changes Made
+
 - Added X component
 - Fixed Y bug
 - Updated Z documentation
 
 ## Testing
+
 How was this tested?
+
 - [ ] Tested locally with `npm run dev`
 - [ ] Verified build with `npm run build`
 - [ ] Ran linter with `npm run lint`
 - [ ] Mobile tested (if UI changes)
 
 ## Checklist
+
 - [ ] Code follows project style guide
 - [ ] Comments added for complex logic
 - [ ] Documentation updated
@@ -174,6 +183,7 @@ How was this tested?
 - [ ] All tests pass
 
 ## Screenshots (if applicable)
+
 <!-- Add screenshots for UI changes -->
 ```
 
@@ -206,12 +216,12 @@ export default function BusinessCard(props) {
 ```tsx
 // ✓ Good: Named function, clear props type
 interface ButtonProps {
-  variant?: 'primary' | 'secondary';
+  variant?: "primary" | "secondary";
   onClick?: () => void;
   children: React.ReactNode;
 }
 
-export function Button({ variant = 'primary', ...props }: ButtonProps) {
+export function Button({ variant = "primary", ...props }: ButtonProps) {
   return <button className={`btn-${variant}`} {...props} />;
 }
 
@@ -302,6 +312,7 @@ describe('Button', () => {
 ```
 
 Run tests:
+
 ```bash
 npm run test
 npm run test:watch
@@ -315,6 +326,7 @@ npm run test:coverage
 ### Update Docs When Needed
 
 If your change affects:
+
 - **Setup** → Update `docs/SETUP_GUIDE.md`
 - **Architecture** → Update `docs/ARCHITECTURE.md`
 - **Product** → Update `docs/PRODUCT_VISION.md`
@@ -372,25 +384,31 @@ const budgetFit = (businessCost / userBudget) * 100;
 
 ```markdown
 ## Description
+
 Brief description of the bug.
 
 ## Steps to Reproduce
+
 1. Go to...
 2. Click...
 3. See error...
 
 ## Expected Behavior
+
 What should happen?
 
 ## Actual Behavior
+
 What actually happened?
 
 ## Environment
+
 - OS: Windows 11
 - Browser: Chrome 120
 - Node: 18.17.0
 
 ## Screenshots
+
 <!-- Attach screenshots if helpful -->
 ```
 
@@ -407,18 +425,23 @@ What actually happened?
 
 ```markdown
 ## Description
+
 What would you like to add?
 
 ## Problem Solved
+
 What problem does this solve?
 
 ## Proposed Solution
+
 How should it work?
 
 ## Alternatives Considered
+
 Any other approaches?
 
 ## Additional Context
+
 Screenshots, mockups, etc.
 ```
 
@@ -426,14 +449,14 @@ Screenshots, mockups, etc.
 
 ## 📋 Issue Labels
 
-| Label | Meaning |
-|-------|---------|
-| `bug` | Something isn't working |
-| `enhancement` | Feature request |
-| `documentation` | Docs improvement |
-| `good first issue` | Great for newcomers |
-| `help wanted` | Extra attention needed |
-| `wontfix` | Won't be implemented |
+| Label              | Meaning                 |
+| ------------------ | ----------------------- |
+| `bug`              | Something isn't working |
+| `enhancement`      | Feature request         |
+| `documentation`    | Docs improvement        |
+| `good first issue` | Great for newcomers     |
+| `help wanted`      | Extra attention needed  |
+| `wontfix`          | Won't be implemented    |
 
 ---
 
@@ -460,13 +483,17 @@ See [CHANGELOG.md](../CHANGELOG.md) for format and update procedure.
 ## ❓ FAQs
 
 ### Q: How long does code review take?
+
 **A**: Usually 1-3 days. Critical fixes prioritized.
 
 ### Q: Can I work on multiple features?
+
 **A**: Yes, use separate branches for each feature.
 
 ### Q: What if my PR conflicts with main?
+
 **A**: Rebase and resolve conflicts:
+
 ```bash
 git fetch origin
 git rebase origin/main
@@ -475,9 +502,11 @@ git push origin feature/your-feature --force-with-lease
 ```
 
 ### Q: Do I need to squash my commits?
+
 **A**: No, we preserve commit history. Keep commits logical and clean.
 
 ### Q: How do I add myself as a contributor?
+
 **A**: You're automatically recognized via git history. GitHub handles attribution.
 
 ---

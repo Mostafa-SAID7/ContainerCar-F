@@ -5,6 +5,7 @@
 ### ESLint Standards
 
 #### No Anti-Patterns
+
 - [ ] No `any` type usage
 - [ ] No `console.log` in production code
 - [ ] No hardcoded values (use constants)
@@ -13,12 +14,13 @@
 - [ ] No deeply nested conditions (max 3 levels)
 
 #### TypeScript Compliance
+
 ```typescript
 // ❌ Bad
 const handleClick = (e) => {
-  console.log('clicked');
+  console.log("clicked");
   const data: any = fetchData();
-}
+};
 
 // ✅ Good
 interface ClickEvent {
@@ -28,10 +30,11 @@ interface ClickEvent {
 const handleClick = (e: ClickEvent): void => {
   e.preventDefault();
   const data: BusinessData = fetchBusinessData();
-}
+};
 ```
 
 #### Naming Conventions
+
 - [ ] Components: PascalCase (BusinessCard)
 - [ ] Functions/variables: camelCase (handleClick)
 - [ ] Constants: UPPER_SNAKE_CASE (MAX_RETRIES)
@@ -39,6 +42,7 @@ const handleClick = (e: ClickEvent): void => {
 - [ ] Descriptive names (not `x`, `d`, `tmp`)
 
 #### Function Quality
+
 - [ ] Single responsibility (one job per function)
 - [ ] Max 20 lines per function
 - [ ] Max 3 parameters (use object destructuring for more)
@@ -50,8 +54,8 @@ const handleClick = (e: ClickEvent): void => {
 // ❌ Bad: Does too much
 function processBusiness(b, u, f) {
   const fit = (b.investment / u) * 100;
-  console.log('Calculating...');
-  fetch('/api/save', { body: JSON.stringify({ b, fit }) });
+  console.log("Calculating...");
+  fetch("/api/save", { body: JSON.stringify({ b, fit }) });
   return fit;
 }
 
@@ -68,6 +72,7 @@ async function saveBudgetFit(business: Business, fit: number): Promise<void> {
 ### React Best Practices
 
 #### Components
+
 - [ ] No inline function definitions (use useCallback)
 - [ ] Props always in interface
 - [ ] No prop drilling (use Context for 3+ levels)
@@ -99,6 +104,7 @@ export function BusinessCard({ id, name, onSelect }: BusinessCardProps) {
 ```
 
 #### Hooks
+
 - [ ] Dependencies arrays complete
 - [ ] No missing dependencies
 - [ ] useEffect cleanup functions
@@ -120,6 +126,7 @@ useEffect(() => {
 ### CSS/Tailwind Standards
 
 #### No Anti-Patterns
+
 - [ ] No arbitrary values (use design system)
 - [ ] No `!important` usage
 - [ ] Consistent spacing (4px grid)
@@ -137,6 +144,7 @@ useEffect(() => {
 ### Accessibility Standards
 
 #### WCAG AA Compliance
+
 - [ ] Color contrast 4.5:1 minimum
 - [ ] Focus states visible
 - [ ] Semantic HTML used
@@ -160,17 +168,20 @@ useEffect(() => {
 ## Performance Audit
 
 ### Bundle Size Analysis
+
 ```bash
 npm run build -- --mode analyze
 ```
 
 #### Targets
+
 - [ ] Total bundle: <500KB
 - [ ] Main chunk: <200KB
 - [ ] Vendor chunk: <300KB
 - [ ] No duplicate dependencies
 
 #### Optimizations
+
 - [ ] Tree shake unused imports
 - [ ] Dynamic imports for routes
 - [ ] Lazy load components
@@ -180,12 +191,14 @@ npm run build -- --mode analyze
 ### Runtime Performance
 
 #### Metrics (using Lighthouse)
+
 - [ ] Largest Contentful Paint (LCP): <2.5s
 - [ ] First Input Delay (FID): <100ms
 - [ ] Cumulative Layout Shift (CLS): <0.1
 - [ ] First Contentful Paint (FCP): <1.8s
 
 #### Optimization Checklist
+
 - [ ] Images lazy loaded
 - [ ] CSS minified
 - [ ] JavaScript minified
@@ -210,6 +223,7 @@ npm run build -- --mode analyze
 ## Security Audit
 
 ### Input Validation
+
 - [ ] All form inputs validated
 - [ ] XSS prevention (sanitize output)
 - [ ] SQL injection protection (use parameterized)
@@ -217,6 +231,7 @@ npm run build -- --mode analyze
 - [ ] Rate limiting implemented
 
 ### Data Protection
+
 - [ ] No sensitive data in localStorage
 - [ ] HTTPS only
 - [ ] Content Security Policy headers
@@ -224,6 +239,7 @@ npm run build -- --mode analyze
 - [ ] No API keys in code
 
 ### Authentication/Authorization
+
 - [ ] Proper token storage
 - [ ] Secure logout
 - [ ] Session timeout
@@ -238,6 +254,7 @@ npm run build -- --mode analyze
 ## Code Review: [PR Title]
 
 ### ✅ What's Good
+
 - Clear component structure
 - Proper TypeScript usage
 - Good accessibility implementation
@@ -254,10 +271,11 @@ Reason: Explicit types improve IDE support and prevent runtime errors
 Location: `src/features/businesses/components/BusinessDetail.tsx`
 Current: 250+ lines
 Suggested: Split into smaller components
+
 - BusinessDetailHeader (50 lines)
 - BusinessDetailBody (100 lines)
 - BusinessDetailSidebar (50 lines)
-Reason: Improves reusability and testability
+  Reason: Improves reusability and testability
 
 **Issue 3: Missing Accessibility**
 Location: `src/features/businesses/components/BusinessFilter.tsx`
@@ -266,6 +284,7 @@ Suggested: `<button onClick={handleReset}>Reset filters</button>`
 Reason: Semantic HTML provides keyboard navigation and screen reader support
 
 ### 📊 Quality Metrics
+
 - Bundle size impact: +2KB (acceptable)
 - Performance impact: None detected
 - Test coverage: 82% (target: 80%)
@@ -282,6 +301,7 @@ Next: Testing phase
 ## Code Metrics Summary
 
 ### Complexity Analysis
+
 ```
 Cyclomatic Complexity
 - BusinessCard: 2 (✅ low)
@@ -295,6 +315,7 @@ Lines of Code
 ```
 
 ### Maintainability Index
+
 ```
 Average: 75 (✅ Good)
 Target: 70+
@@ -309,18 +330,21 @@ Components below 70:
 ## Refactoring Checklist
 
 ### High Priority
+
 - [ ] Break down large components (>100 LOC)
 - [ ] Extract repeated logic into custom hooks
 - [ ] Remove dead code
 - [ ] Simplify complex conditions
 
 ### Medium Priority
+
 - [ ] Optimize re-renders (use React.memo)
 - [ ] Extract magic numbers to constants
 - [ ] Improve naming consistency
 - [ ] Add missing JSDoc comments
 
 ### Low Priority
+
 - [ ] Style consistency improvements
 - [ ] Test organization
 - [ ] Documentation updates
@@ -331,6 +355,7 @@ Components below 70:
 ## Approval Requirements
 
 ### Before Code Review
+
 - [ ] All tests passing
 - [ ] ESLint: 0 errors, 0 warnings
 - [ ] Prettier: Applied
@@ -338,6 +363,7 @@ Components below 70:
 - [ ] TypeScript: No `any` types
 
 ### Code Review (2+ reviewers needed)
+
 - [ ] ✅ Architecture sound
 - [ ] ✅ Performance acceptable
 - [ ] ✅ Security reviewed
@@ -345,6 +371,7 @@ Components below 70:
 - [ ] ✅ Tests adequate
 
 ### Post-Review
+
 - [ ] All comments addressed
 - [ ] Changes re-verified
 - [ ] Ready for merge

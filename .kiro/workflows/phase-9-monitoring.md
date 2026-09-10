@@ -5,15 +5,16 @@
 ### Performance Metrics Collection
 
 #### Web Vitals
+
 ```typescript
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals';
+import { getCLS, getFID, getFCP, getLCP, getTTFB } from "web-vitals";
 
 // Collect Core Web Vitals
-getCLS(metric => sendMetric('CLS', metric.value));
-getFID(metric => sendMetric('FID', metric.value));
-getFCP(metric => sendMetric('FCP', metric.value));
-getLCP(metric => sendMetric('LCP', metric.value));
-getTTFB(metric => sendMetric('TTFB', metric.value));
+getCLS((metric) => sendMetric("CLS", metric.value));
+getFID((metric) => sendMetric("FID", metric.value));
+getFCP((metric) => sendMetric("FCP", metric.value));
+getLCP((metric) => sendMetric("LCP", metric.value));
+getTTFB((metric) => sendMetric("TTFB", metric.value));
 
 // Send to analytics
 function sendMetric(name, value) {
@@ -22,28 +23,30 @@ function sendMetric(name, value) {
 ```
 
 #### Page Load Performance
+
 ```typescript
 // Measure page load
-window.addEventListener('load', () => {
-  const navTiming = performance.getEntriesByType('navigation')[0];
-  
-  analytics.trackMetric('page_load_time', navTiming.loadEventEnd - navTiming.fetchStart);
-  analytics.trackMetric('fcp', navTiming.domContentLoadedEventStart);
-  analytics.trackMetric('lcp', navTiming.loadEventEnd);
+window.addEventListener("load", () => {
+  const navTiming = performance.getEntriesByType("navigation")[0];
+
+  analytics.trackMetric("page_load_time", navTiming.loadEventEnd - navTiming.fetchStart);
+  analytics.trackMetric("fcp", navTiming.domContentLoadedEventStart);
+  analytics.trackMetric("lcp", navTiming.loadEventEnd);
 });
 ```
 
 ### User Interaction Tracking
 
 #### Navigation Tracking
+
 ```typescript
 // Track page views
 function trackPageView(pageName) {
-  analytics.track('page_view', {
+  analytics.track("page_view", {
     page: pageName,
     timestamp: new Date(),
     referrer: document.referrer,
-    userAgent: navigator.userAgent
+    userAgent: navigator.userAgent,
   });
 }
 
@@ -54,6 +57,7 @@ router.subscribe(({ to }) => {
 ```
 
 #### Button Click Tracking
+
 ```typescript
 function trackButtonClick(buttonName) {
   analytics.track('button_click', {
@@ -70,12 +74,13 @@ function trackButtonClick(buttonName) {
 ```
 
 #### Form Submission Tracking
+
 ```typescript
 function trackFormSubmit(formName) {
-  analytics.track('form_submit', {
+  analytics.track("form_submit", {
     form: formName,
     page: window.location.pathname,
-    timestamp: new Date()
+    timestamp: new Date(),
   });
 }
 ```
@@ -87,36 +92,38 @@ function trackFormSubmit(formName) {
 ### Error Tracking Setup
 
 #### Global Error Handler
+
 ```typescript
 // Capture uncaught errors
-window.addEventListener('error', (event) => {
+window.addEventListener("error", (event) => {
   captureError({
     message: event.message,
     source: event.filename,
     lineno: event.lineno,
     colno: event.colno,
     stack: event.error?.stack,
-    type: 'uncaught_error'
+    type: "uncaught_error",
   });
 });
 
 // Capture unhandled promise rejections
-window.addEventListener('unhandledrejection', (event) => {
+window.addEventListener("unhandledrejection", (event) => {
   captureError({
     message: event.reason?.message || String(event.reason),
     stack: event.reason?.stack,
-    type: 'unhandled_promise_rejection'
+    type: "unhandled_promise_rejection",
   });
 });
 
 function captureError(errorData) {
-  console.error('Error captured:', errorData);
+  console.error("Error captured:", errorData);
   // Send to error tracking service
   errorTracker.captureException(errorData);
 }
 ```
 
 #### React Error Boundary
+
 ```typescript
 class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
@@ -138,20 +145,21 @@ class ErrorBoundary extends React.Component {
 ```
 
 #### API Error Tracking
+
 ```typescript
 // Intercept API calls
 apiClient.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     errorTracker.captureException({
       message: error.message,
       endpoint: error.config?.url,
       status: error.response?.status,
       data: error.response?.data,
-      type: 'api_error'
+      type: "api_error",
     });
     return Promise.reject(error);
-  }
+  },
 );
 ```
 
@@ -162,73 +170,76 @@ apiClient.interceptors.response.use(
 ### User Behavior Tracking
 
 #### Business Discovery
+
 ```typescript
 // User browses businesses
-trackEvent('businesses_viewed', {
+trackEvent("businesses_viewed", {
   count: 12,
   page: 1,
-  filters: { category: 'coffee' }
+  filters: { category: "coffee" },
 });
 
 // User applies filters
-trackEvent('filters_applied', {
+trackEvent("filters_applied", {
   budget_min: 100000,
   budget_max: 300000,
-  category: 'coffee',
-  setup_time: 60
+  category: "coffee",
+  setup_time: 60,
 });
 
 // User views business detail
-trackEvent('business_detail_viewed', {
-  businessId: 'uuid-123',
-  businessName: 'Coffee Truck',
-  investment: 280000
+trackEvent("business_detail_viewed", {
+  businessId: "uuid-123",
+  businessName: "Coffee Truck",
+  investment: 280000,
 });
 
 // User compares businesses
-trackEvent('businesses_compared', {
-  businessIds: ['uuid-1', 'uuid-2', 'uuid-3'],
-  count: 3
+trackEvent("businesses_compared", {
+  businessIds: ["uuid-1", "uuid-2", "uuid-3"],
+  count: 3,
 });
 ```
 
 #### Application Tracking
+
 ```typescript
 // User starts application
-trackEvent('application_started', {
-  businessId: 'uuid-123',
-  businessName: 'Coffee Truck',
-  userBudget: 300000
+trackEvent("application_started", {
+  businessId: "uuid-123",
+  businessName: "Coffee Truck",
+  userBudget: 300000,
 });
 
 // User submits application
-trackEvent('application_submitted', {
-  businessId: 'uuid-123',
-  location: 'Cairo',
-  businessModel: 'franchise',
-  supportNeeded: ['setup', 'equipment']
+trackEvent("application_submitted", {
+  businessId: "uuid-123",
+  location: "Cairo",
+  businessModel: "franchise",
+  supportNeeded: ["setup", "equipment"],
 });
 ```
 
 #### Franchise & Supplier Tracking
+
 ```typescript
 // User explores franchises
-trackEvent('franchise_viewed', {
-  franchiseId: 'uuid-456',
-  franchiseName: 'CoffeePro',
-  investmentRequired: 300000
+trackEvent("franchise_viewed", {
+  franchiseId: "uuid-456",
+  franchiseName: "CoffeePro",
+  investmentRequired: 300000,
 });
 
 // User requests franchise info
-trackEvent('franchise_info_requested', {
-  franchiseId: 'uuid-456'
+trackEvent("franchise_info_requested", {
+  franchiseId: "uuid-456",
 });
 
 // User requests supplier quote
-trackEvent('quote_requested', {
-  supplierId: 'uuid-789',
-  supplierName: 'CoffeeEquipment Co',
-  category: 'equipment'
+trackEvent("quote_requested", {
+  supplierId: "uuid-789",
+  supplierName: "CoffeeEquipment Co",
+  category: "equipment",
 });
 ```
 
@@ -239,6 +250,7 @@ trackEvent('quote_requested', {
 ### Key Performance Indicators (KPIs)
 
 #### Daily Metrics
+
 ```
 Dashboard: Daily Overview
 ├─ Active Users: 1,234
@@ -251,6 +263,7 @@ Dashboard: Daily Overview
 ```
 
 #### Feature Adoption
+
 ```
 Dashboard: Feature Usage
 ├─ Businesses Viewed: 45,600
@@ -263,6 +276,7 @@ Dashboard: Feature Usage
 ```
 
 #### Performance Metrics
+
 ```
 Dashboard: Application Performance
 ├─ Page Load Time (avg): 1.2s
@@ -281,6 +295,7 @@ Dashboard: Application Performance
 ### Alert Thresholds
 
 #### Performance Alerts
+
 ```
 IF page_load_time > 3s
   THEN alert('High page load time')
@@ -296,6 +311,7 @@ IF error_rate > 1%
 ```
 
 #### Availability Alerts
+
 ```
 IF uptime < 99.9%
   THEN alert('Uptime SLA breach')
@@ -307,6 +323,7 @@ IF consecutive_errors > 10
 ```
 
 #### Business Alerts
+
 ```
 IF conversion_rate < 5%
   THEN alert('Low conversion rate')
@@ -322,6 +339,7 @@ IF user_retention < 30%
 ## Data Collection & Privacy
 
 ### GDPR Compliance
+
 - [ ] Obtain user consent for analytics
 - [ ] Anonymize personal data
 - [ ] No sensitive data in analytics
@@ -329,15 +347,16 @@ IF user_retention < 30%
 - [ ] Data retention policy <90 days
 
 ### Analytics Implementation
+
 ```typescript
 // Request consent before tracking
 if (hasAnalyticsConsent()) {
   // Only then track
-  analytics.track('page_view', { page });
+  analytics.track("page_view", { page });
 }
 
 // Allow opt-out
-localStorage.setItem('analytics-opt-out', true);
+localStorage.setItem("analytics-opt-out", true);
 ```
 
 ---
@@ -348,9 +367,10 @@ localStorage.setItem('analytics-opt-out', true);
 
 **Frequency**: First Monday of each month  
 **Duration**: 1 hour  
-**Attendees**: Product, Engineering, Analytics  
+**Attendees**: Product, Engineering, Analytics
 
 #### Agenda
+
 1. **Review KPIs** (10 min)
    - Are we hitting targets?
    - What changed month-over-month?
@@ -383,6 +403,7 @@ localStorage.setItem('analytics-opt-out', true);
 ### Test Tracking
 
 #### Test: Filter Organization Improvement
+
 ```
 Test ID: TEST-001
 Hypothesis: Reorganizing filters increases applications
@@ -411,23 +432,24 @@ Analysis:
 ```
 
 #### Test Tracking Template
+
 ```typescript
 // Track A/B test assignment
-if (isInABTest('filter-redesign')) {
-  const variant = getUserVariant('filter-redesign');
-  
-  trackEvent('ab_test_assigned', {
-    testId: 'filter-redesign',
+if (isInABTest("filter-redesign")) {
+  const variant = getUserVariant("filter-redesign");
+
+  trackEvent("ab_test_assigned", {
+    testId: "filter-redesign",
     variant: variant, // 'control' or 'variant'
-    timestamp: new Date()
+    timestamp: new Date(),
   });
 }
 
 // Track test metrics
-trackEvent('ab_test_metric', {
-  testId: 'filter-redesign',
-  metric: 'filter_applied',
-  variant: userVariant
+trackEvent("ab_test_metric", {
+  testId: "filter-redesign",
+  metric: "filter_applied",
+  variant: userVariant,
 });
 ```
 
@@ -436,6 +458,7 @@ trackEvent('ab_test_metric', {
 ## Custom Dashboards
 
 ### Engineering Dashboard
+
 ```
 Real-time metrics for developers:
 - Error rate (last 24h)
@@ -447,6 +470,7 @@ Real-time metrics for developers:
 ```
 
 ### Product Dashboard
+
 ```
 Business metrics:
 - Applications submitted (daily)
@@ -458,6 +482,7 @@ Business metrics:
 ```
 
 ### Executive Dashboard
+
 ```
 High-level overview:
 - Active users (trend)
@@ -512,15 +537,16 @@ Step 5: Postmortem (Next business day)
 
 ### Recommended Tools
 
-| Tool | Purpose | Cost |
-|------|---------|------|
-| Vercel Analytics | Performance monitoring | Free (included) |
-| Sentry | Error tracking | Free tier available |
-| Google Analytics | User behavior | Free |
-| LogRocket | Session replay | Paid |
-| Datadog | Full-stack monitoring | Paid |
+| Tool             | Purpose                | Cost                |
+| ---------------- | ---------------------- | ------------------- |
+| Vercel Analytics | Performance monitoring | Free (included)     |
+| Sentry           | Error tracking         | Free tier available |
+| Google Analytics | User behavior          | Free                |
+| LogRocket        | Session replay         | Paid                |
+| Datadog          | Full-stack monitoring  | Paid                |
 
 ### Implementation Priority
+
 1. **Priority 1** (Week 1)
    - Google Analytics
    - Basic error tracking
@@ -538,6 +564,7 @@ Step 5: Postmortem (Next business day)
 ## Success Criteria
 
 ### Technical Monitoring
+
 - [ ] Error rate stays <0.1%
 - [ ] Page load time <2s (p95)
 - [ ] API response time <200ms (p95)
@@ -545,6 +572,7 @@ Step 5: Postmortem (Next business day)
 - [ ] Zero data loss incidents
 
 ### User Experience Monitoring
+
 - [ ] User retention >50% (week 1)
 - [ ] Application rate >8%
 - [ ] Filter usage >60%
@@ -552,6 +580,7 @@ Step 5: Postmortem (Next business day)
 - [ ] Support tickets <5/day
 
 ### Business Monitoring
+
 - [ ] 1000+ applications in first month
 - [ ] 100+ franchises explored
 - [ ] 200+ supplier quotes requested

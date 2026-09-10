@@ -7,6 +7,7 @@
 **Design ID**: DESIGN-001-BUSINESSES
 
 #### Component Structure
+
 ```
 features/businesses/
 ├── components/
@@ -35,6 +36,7 @@ features/businesses/
 ```
 
 #### Data Flow
+
 ```
 User Input (Filters)
     ↓
@@ -54,6 +56,7 @@ Display BusinessCard components
 ```
 
 #### State Management
+
 ```
 Global State (Context):
 - selectedBusinesses (for comparison)
@@ -71,6 +74,7 @@ Component State:
 ```
 
 #### API Contracts
+
 ```
 GET /api/businesses?
   - page=1
@@ -96,6 +100,7 @@ Response:
 **Design ID**: DESIGN-002-FRANCHISES
 
 #### Component Structure
+
 ```
 features/franchises/
 ├── components/
@@ -116,6 +121,7 @@ features/franchises/
 ```
 
 #### Data Flow
+
 ```
 Browse Franchises → Filter → Select → Apply
     ↓
@@ -139,6 +145,7 @@ Show confirmation
 **Design ID**: DESIGN-003-SUPPLIERS
 
 #### Component Structure
+
 ```
 features/suppliers/
 ├── components/
@@ -160,6 +167,7 @@ features/suppliers/
 ```
 
 #### Data Flow
+
 ```
 Browse Suppliers → Filter → Select → Request Quote
     ↓
@@ -181,6 +189,7 @@ Track quote status
 ## Design System Implementation
 
 ### Color Application
+
 ```
 ComponentCard:
   background: bg-white
@@ -198,6 +207,7 @@ Status Badge:
 ```
 
 ### Typography Hierarchy
+
 ```
 Page Title: h1 (32px, bold, dark graphite)
 Section Header: h2 (24px, semibold, dark graphite)
@@ -212,6 +222,7 @@ Labels: 12px (semibold, slate)
 ## Performance Optimization Strategy
 
 ### Lazy Loading
+
 ```
 - Businesses grid: Infinite scroll or pagination
 - Images: Lazy load with placeholder
@@ -219,6 +230,7 @@ Labels: 12px (semibold, slate)
 ```
 
 ### Caching
+
 ```
 - Businesses list: Cache for 10 minutes
 - Business detail: Cache for 30 minutes
@@ -227,6 +239,7 @@ Labels: 12px (semibold, slate)
 ```
 
 ### Bundle Optimization
+
 ```
 - Tree shake unused Radix UI components
 - Dynamic import heavy components
@@ -239,18 +252,21 @@ Labels: 12px (semibold, slate)
 ## Accessibility Design
 
 ### Keyboard Navigation
+
 - Tab through all interactive elements
 - Enter to select/click buttons
 - Escape to close modals
 - Arrow keys for carousel/dropdown
 
 ### Screen Reader Support
+
 - Semantic HTML (buttons, links, forms)
 - ARIA labels for icons
 - Form label associations
 - Status announcements for dynamic content
 
 ### Color Contrast
+
 - Text on background: 4.5:1 minimum
 - UI components: 3:1 minimum
 - Test with WebAIM contrast checker
@@ -260,6 +276,7 @@ Labels: 12px (semibold, slate)
 ## RTL (Arabic) Considerations
 
 ### Layout Flipping
+
 ```
 flex-row → [dir=rtl]:flex-row-reverse
 margin-l → [dir=rtl]:margin-r
@@ -267,6 +284,7 @@ text-left → [dir=rtl]:text-right
 ```
 
 ### Number Formatting
+
 - Thousands separator: , or . based on locale
 - Currency: EGP symbol positioning
 - Dates: DD/MM/YYYY format
@@ -276,6 +294,7 @@ text-left → [dir=rtl]:text-right
 ## Testing Strategy
 
 ### Unit Tests
+
 ```
 - Filter logic
 - Data transformation
@@ -284,6 +303,7 @@ text-left → [dir=rtl]:text-right
 ```
 
 ### Integration Tests
+
 ```
 - Complete filter workflow
 - Business detail page full flow
@@ -292,6 +312,7 @@ text-left → [dir=rtl]:text-right
 ```
 
 ### E2E Tests
+
 ```
 - User browses businesses
 - User applies filters
@@ -304,6 +325,7 @@ text-left → [dir=rtl]:text-right
 ## Database Schema (Future)
 
 ### businesses table
+
 ```sql
 CREATE TABLE businesses (
   id UUID PRIMARY KEY,
@@ -318,6 +340,7 @@ CREATE TABLE businesses (
 ```
 
 ### franchises table
+
 ```sql
 CREATE TABLE franchises (
   id UUID PRIMARY KEY,
@@ -329,6 +352,7 @@ CREATE TABLE franchises (
 ```
 
 ### suppliers table
+
 ```sql
 CREATE TABLE suppliers (
   id UUID PRIMARY KEY,
@@ -345,6 +369,7 @@ CREATE TABLE suppliers (
 ## Integration Points
 
 ### With Budget Context
+
 ```
 <BusinessCard budget={userBudget} />
 → Calculate budgetFitScore
@@ -352,6 +377,7 @@ CREATE TABLE suppliers (
 ```
 
 ### With Business Comparison
+
 ```
 - Store selected businesses in context
 - Pass to ComparisonTable
@@ -360,6 +386,7 @@ CREATE TABLE suppliers (
 ```
 
 ### With Start My Business Flow
+
 ```
 - Click "Start My Business" on detail page
 - Open wizard
@@ -372,6 +399,7 @@ CREATE TABLE suppliers (
 ## Error Handling
 
 ### API Errors
+
 ```
 500 Server Error → Show "Something went wrong" with retry
 404 Not Found → Show "Business not found"
@@ -380,6 +408,7 @@ Network Error → Show offline message with retry
 ```
 
 ### User Errors
+
 ```
 Invalid filter selection → Show validation message
 Empty results → Show "No businesses match your criteria"
@@ -389,6 +418,7 @@ Session timeout → Show "Please log in again"
 ---
 
 ## Browser Support
+
 - Chrome/Edge: Latest 2 versions
 - Firefox: Latest 2 versions
 - Safari: Latest 2 versions

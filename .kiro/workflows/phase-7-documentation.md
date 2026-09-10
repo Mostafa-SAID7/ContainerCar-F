@@ -5,56 +5,56 @@
 ### Inline Code Comments
 
 #### When to Comment (ONLY WHY, not WHAT)
+
 ```typescript
 // ❌ BAD: Obvious comment
-const result = items.filter(item => item.active); // Filter active items
+const result = items.filter((item) => item.active); // Filter active items
 
 // ✅ GOOD: Explains the why
 // Filter only active items to calculate budget fit score
 // since archived businesses skew the recommendation algorithm
-const activeBusinesses = businesses.filter(business => business.status === 'active');
+const activeBusinesses = businesses.filter((business) => business.status === "active");
 ```
 
 #### Complex Algorithm Documentation
+
 ```typescript
 /**
  * Calculates budget fit score based on investment compatibility
  * Uses a weighted formula that prioritizes exact matches but rewards
  * near-fits to show alternatives within reasonable range
- * 
+ *
  * @param investmentRequired - Business investment needed
  * @param userBudget - User's available budget
  * @returns Fit score 0-100 (100 = exact match, 0 = too expensive)
- * 
+ *
  * Formula: ((userBudget / investmentRequired) * 100)
  * - If budget exceeds investment: cap at 100
  * - If 20% above investment: 80 (stretch)
  * - If 50% above investment: 50 (very expensive)
  */
-function calculateBudgetFit(
-  investmentRequired: number,
-  userBudget: number
-): number {
+function calculateBudgetFit(investmentRequired: number, userBudget: number): number {
   const ratio = (userBudget / investmentRequired) * 100;
   return Math.min(ratio, 100);
 }
 ```
 
 #### Documentation Template
+
 ```typescript
 /**
  * [One-line summary of what this does]
- * 
+ *
  * [Detailed explanation of purpose and behavior]
- * 
+ *
  * @param param1 - Description of parameter
  * @param param2 - Description of parameter
  * @returns Description of return value
- * 
+ *
  * @example
  * const result = myFunction(value1, value2);
  * // result is...
- * 
+ *
  * @throws Error - Description of when error is thrown
  */
 ```
@@ -62,26 +62,27 @@ function calculateBudgetFit(
 ### Component Documentation
 
 #### Component Props Documentation
+
 ```typescript
 /**
  * Displays a business opportunity card with key metrics
- * 
+ *
  * Used in marketplace grids to show business summary
  * Handles click to navigate to detail page
  */
 interface BusinessCardProps {
   /** Unique business identifier */
   id: string;
-  
+
   /** Business name (e.g., "Coffee Truck", "Mobile Car Wash") */
   name: string;
-  
+
   /** Investment required in EGP */
   investment: number;
-  
+
   /** Estimated setup time in days */
   setupTime: number;
-  
+
   /** Callback fired when card is clicked */
   onSelect: (id: string) => void;
 }
@@ -96,15 +97,15 @@ export function BusinessCard(props: BusinessCardProps) {
 ```typescript
 /**
  * Manages business filtering and search
- * 
+ *
  * Provides:
  * - Budget range filtering
  * - Category filtering
  * - Setup time filtering
  * - Persistent filter state
- * 
+ *
  * @returns Filter state and methods
- * 
+ *
  * @example
  * const { filters, applyFilter, resetFilters } = useBusinessFilters();
  */
@@ -118,10 +119,10 @@ export function useBusinessFilters() {
 ```typescript
 /**
  * Business data service
- * 
+ *
  * Handles all business-related data operations including
  * fetching lists, filtering, and calculating metrics
- * 
+ *
  * Data source: Mock data (src/data/businesses.ts)
  * Future: Will connect to /api/businesses endpoint
  */
@@ -131,9 +132,7 @@ export function useBusinessFilters() {
  * @param filters - Filter options
  * @returns Promise resolving to filtered businesses
  */
-export async function getBusinesses(
-  filters?: BusinessFilters
-): Promise<Business[]> {
+export async function getBusinesses(filters?: BusinessFilters): Promise<Business[]> {
   // implementation
 }
 ```
@@ -145,15 +144,18 @@ export async function getBusinesses(
 ### Feature Guides
 
 #### Business Marketplace Guide
+
 **File**: `docs/guides/BUSINESS_MARKETPLACE.md`
 
 ```markdown
 # Business Marketplace Guide
 
 ## Overview
+
 Browse and filter business opportunities matching your budget
 
 ## Getting Started
+
 1. Enter your budget on homepage
 2. Browse filtered business options
 3. Click on a business to see details
@@ -161,13 +163,16 @@ Browse and filter business opportunities matching your budget
 5. Click "Start My Business" to apply
 
 ## Filtering
+
 Use filters to narrow down options:
+
 - **Budget**: Set min/max investment
 - **Category**: Select business type
 - **Setup Time**: How quickly to launch
 - **Staff**: How many people needed
 
 ## Understanding Business Details
+
 - **Investment Breakdown**: Where every EGP goes
 - **Equipment**: What you'll need
 - **Location**: Where you can operate
@@ -176,6 +181,7 @@ Use filters to narrow down options:
 - **Franchise Info**: If available
 
 ## Tips
+
 - Start with exact budget match
 - Explore "stretch" options (slight overage)
 - Review all location requirements
@@ -223,18 +229,21 @@ A: Depends on business type. Check the setup timeline in business details.
 # Troubleshooting
 
 ## Filters Not Working
+
 1. Refresh the page (Ctrl+F5)
 2. Clear browser cache
 3. Try different filter combination
 4. Report issue with screenshot
 
 ## Business Details Not Loading
+
 1. Check internet connection
 2. Refresh page
 3. Try different business
 4. Wait 30 seconds and retry
 
 ## Can't Submit Application
+
 1. Ensure all fields filled
 2. Check email format
 3. Try again in 5 minutes
@@ -247,12 +256,13 @@ A: Depends on business type. Check the setup timeline in business details.
 
 ### Endpoint Documentation
 
-```markdown
+````markdown
 ## GET /api/businesses
 
 Fetch paginated list of businesses
 
 ### Query Parameters
+
 - `page` (int, default=1): Page number
 - `limit` (int, default=12): Items per page
 - `category` (string): Filter by category
@@ -262,6 +272,7 @@ Fetch paginated list of businesses
 - `sort` (string): Sort by "investment", "setup_time", "popular"
 
 ### Response
+
 ```json
 {
   "data": [
@@ -281,12 +292,15 @@ Fetch paginated list of businesses
   "pages": 13
 }
 ```
+````
 
 ### Example Request
+
 ```bash
 curl "https://api.containercar.com/api/businesses?category=coffee&budget_max=300000"
 ```
-```
+
+````
 
 ---
 
@@ -385,17 +399,20 @@ None
 git pull origin main
 npm install
 npm run dev
-```
+````
 
 ## 📞 Support
+
 - Report bugs: [GitHub Issues](https://github.com/Mostafa-SAID7/ContainerCar-F/issues)
 - Questions: [GitHub Discussions](https://github.com/Mostafa-SAID7/ContainerCar-F/discussions)
 
 ## Contributors
+
 - Architecture: [Mustafa]
 - Development: [Team]
 - Testing: [QA Team]
 - Design: [Design Team]
+
 ```
 
 ---
@@ -450,3 +467,4 @@ npm run dev
 **Status**: ✅ DOCUMENTATION COMPLETE
 **Created**: 2026-09-10
 **Version**: 1.0
+```

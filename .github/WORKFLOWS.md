@@ -5,6 +5,7 @@ This project uses a **focused, consolidated CI/CD pipeline** with semantic versi
 ## Workflow Structure
 
 ### 1. **ci.yml** - Continuous Integration Pipeline
+
 Runs on every push and pull request to `main` and `develop` branches.
 
 **Pipeline Stages (Sequential):**
@@ -50,6 +51,7 @@ Runs on every push and pull request to `main` and `develop` branches.
 ```
 
 **Key Features:**
+
 - ✅ Node 20 with deprecation handling
 - ✅ `npm ci || npm install` fallback for missing lock file
 - ✅ Fast-fail on quality issues
@@ -58,6 +60,7 @@ Runs on every push and pull request to `main` and `develop` branches.
 - ✅ Secret scanning with TruffleHog
 
 **When It Runs:**
+
 - Every push to `main` or `develop`
 - Every pull request targeting `main` or `develop`
 - Automatic on code changes
@@ -65,6 +68,7 @@ Runs on every push and pull request to `main` and `develop` branches.
 ---
 
 ### 2. **release.yml** - Semantic Versioning & Release
+
 Handles automated releases with semantic versioning.
 
 **Pipeline Stages:**
@@ -108,14 +112,16 @@ Handles automated releases with semantic versioning.
 **How to Trigger a Release:**
 
 1. **Automatic Detection:**
+
    ```bash
    # Update version in package.json
    npm version patch  # or minor, major
-   
+
    # Update CHANGELOG.md with entry for new version
    # Commit and push to main
    git push origin main
    ```
+
    Release workflow automatically triggers!
 
 2. **Manual Trigger:**
@@ -125,6 +131,7 @@ Handles automated releases with semantic versioning.
    ```
 
 **Key Features:**
+
 - ✅ Automatic version detection from package.json
 - ✅ Semantic versioning validation (X.Y.Z)
 - ✅ CHANGELOG.md validation
@@ -136,6 +143,7 @@ Handles automated releases with semantic versioning.
 - ✅ No duplicate jobs - streamlined process
 
 **When It Runs:**
+
 - On push to `main` when `package.json` or `CHANGELOG.md` changes
 - Manual trigger via workflow_dispatch
 
@@ -144,14 +152,17 @@ Handles automated releases with semantic versioning.
 ## Configuration
 
 ### Environment Variables
+
 ```yaml
-NODE_VERSION: '20'  # Uses Node 20 with deprecation handling
+NODE_VERSION: "20" # Uses Node 20 with deprecation handling
 ```
 
 ### Required Secrets (Optional)
+
 - `SLACK_WEBHOOK_URL` - For Slack notifications on releases
 
 ### Node Version Handling
+
 - GitHub Actions deprecated Node 18
 - Workflows use Node 20 + `ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true`
 - Fallback: `npm ci || npm install` handles missing lock files
@@ -161,6 +172,7 @@ NODE_VERSION: '20'  # Uses Node 20 with deprecation handling
 ## Workflow Status
 
 Check workflow status in GitHub:
+
 - **Actions Tab:** https://github.com/Mostafa-SAID7/ContainerCar-F/actions
 - **Badges in README:** Available for CI status
 
@@ -169,19 +181,25 @@ Check workflow status in GitHub:
 ## Troubleshooting
 
 ### "Dependencies lock file is not found"
+
 **Fix:** Already handled with `npm ci || npm install` fallback
 
 ### "Node 20 deprecated warning"
+
 **Fix:** Already handled with `ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true`
 
 ### Release not triggering
+
 **Check:**
+
 1. Is `package.json` version different from last commit?
 2. Does `CHANGELOG.md` have an entry for the new version?
 3. Format: `## [X.Y.Z]` in CHANGELOG.md
 
 ### Slack notifications not appearing
+
 **Setup:**
+
 1. Create Slack webhook: https://api.slack.com/messaging/webhooks
 2. Add `SLACK_WEBHOOK_URL` secret in GitHub repo settings
 3. Re-run release workflow
@@ -191,6 +209,7 @@ Check workflow status in GitHub:
 ## No Duplicates Guarantee
 
 **Consolidated Structure:**
+
 - ✅ Single ci.yml → All QA/testing/security/performance
 - ✅ Single release.yml → All versioning/releasing/artifacts
 - ✅ NO duplicate lint/build/test/security files
@@ -205,22 +224,27 @@ Check workflow status in GitHub:
 ## Next Steps
 
 1. **Update version in package.json:**
+
    ```bash
    npm version patch
    ```
 
 2. **Update CHANGELOG.md:**
+
    ```markdown
    ## [X.Y.Z] - YYYY-MM-DD
-   
+
    ### Added
+
    - Feature description
-   
+
    ### Fixed
+
    - Bug fix description
    ```
 
 3. **Commit and push:**
+
    ```bash
    git add package.json CHANGELOG.md
    git commit -m "chore: release version X.Y.Z"

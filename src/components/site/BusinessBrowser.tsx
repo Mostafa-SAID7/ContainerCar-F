@@ -37,8 +37,8 @@ export function BusinessBrowser() {
             Browse container businesses
           </h2>
           <p className="mt-3 max-w-xl text-muted-foreground">
-            Every model shows the full investment, setup time and staffing so you can
-            judge fit before committing.
+            Every model shows the full investment, setup time and staffing so you can judge fit
+            before committing.
           </p>
         </div>
 

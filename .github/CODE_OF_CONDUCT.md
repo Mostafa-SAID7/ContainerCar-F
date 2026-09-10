@@ -26,6 +26,7 @@ We are committed to providing a welcoming, inclusive, and respectful environment
 ## Where This Applies
 
 This Code of Conduct applies to:
+
 - GitHub issues and pull requests
 - GitHub discussions
 - Code comments and documentation

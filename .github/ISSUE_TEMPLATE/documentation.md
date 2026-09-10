@@ -3,8 +3,7 @@ name: 📚 Documentation Issue
 about: Report documentation problem or suggest improvement
 title: "[DOCS] "
 labels: documentation
-assignees: ''
-
+assignees: ""
 ---
 
 ## 📚 Documentation Issue
@@ -15,9 +14,9 @@ assignees: ''
 
 <!-- Where is the issue? Provide link or file path -->
 
-**File/Link**: 
+**File/Link**:
 
-**Section**: 
+**Section**:
 
 ## ❌ What's Wrong
 

@@ -4,14 +4,14 @@ on:
   push:
     branches: [main]
     paths:
-      - 'package.json'
-      - 'CHANGELOG.md'
+      - "package.json"
+      - "CHANGELOG.md"
   workflow_dispatch:
     inputs:
       version_type:
-        description: 'Version type (major, minor, patch)'
+        description: "Version type (major, minor, patch)"
         required: true
-        default: 'patch'
+        default: "patch"
         type: choice
         options:
           - patch
@@ -19,7 +19,7 @@ on:
           - major
 
 env:
-  NODE_VERSION: '20'
+  NODE_VERSION: "20"
 
 jobs:
   detect-version-change:
@@ -29,18 +29,18 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       should_release: ${{ steps.version.outputs.should_release }}
       version_type: ${{ steps.version.outputs.version_type }}
-    
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      
+
       - name: Get Current Version
         id: current
         run: |
           CURRENT=$(node -p "require('./package.json').version")
           echo "current=$CURRENT" >> $GITHUB_OUTPUT
-      
+
       - name: Get Previous Version
         id: previous
         run: |
@@ -50,13 +50,13 @@ jobs:
             PREVIOUS="0.0.0"
           fi
           echo "previous=$PREVIOUS" >> $GITHUB_OUTPUT
-      
+
       - name: Detect Version Change
         id: version
         run: |
           CURRENT=${{ steps.current.outputs.current }}
           PREVIOUS=${{ steps.previous.outputs.previous }}
-          
+
           if [ "$CURRENT" != "$PREVIOUS" ]; then
             echo "should_release=true" >> $GITHUB_OUTPUT
             echo "version=$CURRENT" >> $GITHUB_OUTPUT
@@ -75,7 +75,7 @@ jobs:
           else
             echo "should_release=false" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Log Detection Results
         run: |
           echo "Current Version: ${{ steps.current.outputs.current }}"
@@ -88,19 +88,19 @@ jobs:
     runs-on: ubuntu-latest
     needs: detect-version-change
     if: needs.detect-version-change.outputs.should_release == 'true'
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-      
+
       - name: Install Dependencies
         run: npm ci || npm install
-      
+
       - name: Validate Version Format
         run: |
           VERSION="${{ needs.detect-version-change.outputs.version }}"
@@ -109,7 +109,7 @@ jobs:
             exit 1
           fi
           echo "✅ Valid semantic version: $VERSION"
-      
+
       - name: Validate CHANGELOG
         run: |
           if ! grep -q "## \[${{ needs.detect-version-change.outputs.version }}\]" CHANGELOG.md; then
@@ -117,15 +117,15 @@ jobs:
             exit 1
           fi
           echo "✅ CHANGELOG.md has entry for ${{ needs.detect-version-change.outputs.version }}"
-      
+
       - name: Lint & Format Check
         run: |
           npm run lint || true
           npm run format -- --check || true
-      
+
       - name: Build Verification
         run: npm run build
-      
+
       - name: Test Suite
         run: npm run test -- --run || true
 
@@ -134,34 +134,34 @@ jobs:
     runs-on: ubuntu-latest
     needs: [detect-version-change, validate-release]
     if: needs.detect-version-change.outputs.should_release == 'true'
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Extract Release Notes
         id: notes
         run: |
           VERSION="${{ needs.detect-version-change.outputs.version }}"
-          
+
           # Extract notes between version headers
           NOTES=$(sed -n "/^## \[$VERSION\]/,/^## \[/p" CHANGELOG.md | head -n -1 | tail -n +2)
-          
+
           # Escape for GitHub Actions
           NOTES="${NOTES//'%'/'%25'}"
           NOTES="${NOTES//$'\n'/'%0A'}"
           NOTES="${NOTES//$'\r'/'%0D'}"
-          
+
           echo "notes=$NOTES" >> $GITHUB_OUTPUT
-      
+
       - name: Create Release Tag
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          
+
           VERSION="${{ needs.detect-version-change.outputs.version }}"
           git tag -a "v$VERSION" -m "Release v$VERSION" || true
           git push origin "v$VERSION" || true
-      
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -178,26 +178,26 @@ jobs:
     runs-on: ubuntu-latest
     needs: [detect-version-change, create-release]
     if: needs.detect-version-change.outputs.should_release == 'true'
-    
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-      
+
       - name: Install Dependencies
         run: npm ci || npm install
-      
+
       - name: Build Production Bundle
         run: npm run build
-      
+
       - name: Create Build Artifact
         run: |
           tar -czf containercar-${{ needs.detect-version-change.outputs.version }}.tar.gz dist/
-      
+
       - name: Upload Artifact to Release
         uses: softprops/action-gh-release@v1
         with:
@@ -205,7 +205,7 @@ jobs:
           files: containercar-${{ needs.detect-version-change.outputs.version }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+
       - name: Notify Release
         run: |
           echo "✅ Release v${{ needs.detect-version-change.outputs.version }} Published"
@@ -217,7 +217,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [detect-version-change, publish-release]
     if: needs.detect-version-change.outputs.should_release == 'true'
-    
+
     steps:
       - uses: slackapi/slack-github-action@v1.24.0
         with:

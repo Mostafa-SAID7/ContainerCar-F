@@ -8,19 +8,21 @@ import { businesses, type Business } from "@/data/businesses";
 import { suppliers, type Supplier } from "@/data/suppliers";
 import { franchises, type Franchise } from "@/data/franchises";
 
-const delay = <T,>(value: T, ms = 220): Promise<T> =>
+const delay = <T>(value: T, ms = 220): Promise<T> =>
   new Promise((resolve) => setTimeout(() => resolve(value), ms));
 
 export const businessService = {
   list: () => delay(businesses),
   get: (id: string) => delay(businesses.find((b) => b.id === id) ?? null),
-  byIds: (ids: string[]) => delay(ids.map((id) => businesses.find((b) => b.id === id)).filter(Boolean) as Business[]),
+  byIds: (ids: string[]) =>
+    delay(ids.map((id) => businesses.find((b) => b.id === id)).filter(Boolean) as Business[]),
 };
 
 export const supplierService = {
   list: () => delay(suppliers),
   get: (id: string) => delay(suppliers.find((s) => s.id === id) ?? null),
-  byIds: (ids: string[]) => delay(ids.map((id) => suppliers.find((s) => s.id === id)).filter(Boolean) as Supplier[]),
+  byIds: (ids: string[]) =>
+    delay(ids.map((id) => suppliers.find((s) => s.id === id)).filter(Boolean) as Supplier[]),
 };
 
 export const franchiseService = {
@@ -43,15 +45,43 @@ export const searchService = {
     const results: SearchResult[] = [];
     businesses.forEach((b) => {
       if ([b.name, b.category, b.tagline, ...b.locations].join(" ").toLowerCase().includes(q))
-        results.push({ type: "Business", id: b.id, title: b.name, subtitle: b.category, href: `/businesses/${b.id}` });
+        results.push({
+          type: "Business",
+          id: b.id,
+          title: b.name,
+          subtitle: b.category,
+          href: `/businesses/${b.id}`,
+        });
     });
     franchises.forEach((f) => {
-      if ([f.brand, f.category, f.description, ...f.citiesAvailable].join(" ").toLowerCase().includes(q))
-        results.push({ type: "Franchise", id: f.id, title: f.brand, subtitle: `${f.category} franchise`, href: "/franchises" });
+      if (
+        [f.brand, f.category, f.description, ...f.citiesAvailable]
+          .join(" ")
+          .toLowerCase()
+          .includes(q)
+      )
+        results.push({
+          type: "Franchise",
+          id: f.id,
+          title: f.brand,
+          subtitle: `${f.category} franchise`,
+          href: "/franchises",
+        });
     });
     suppliers.forEach((s) => {
-      if ([s.name, s.category, s.location, ...s.products.map((p) => p.name)].join(" ").toLowerCase().includes(q))
-        results.push({ type: "Supplier", id: s.id, title: s.name, subtitle: s.category, href: `/suppliers/${s.id}` });
+      if (
+        [s.name, s.category, s.location, ...s.products.map((p) => p.name)]
+          .join(" ")
+          .toLowerCase()
+          .includes(q)
+      )
+        results.push({
+          type: "Supplier",
+          id: s.id,
+          title: s.name,
+          subtitle: s.category,
+          href: `/suppliers/${s.id}`,
+        });
     });
     return results.slice(0, 12);
   },

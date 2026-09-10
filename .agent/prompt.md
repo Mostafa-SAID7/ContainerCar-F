@@ -92,17 +92,17 @@ A person who wants to start a small business.
 
 They care about:
 
-* Budget
-* Investment
-* Setup time
-* Business type
-* Expected operating costs
-* Equipment
-* Staff
-* Location
-* Franchise options
-* Suppliers
-* Business complexity
+- Budget
+- Investment
+- Setup time
+- Business type
+- Expected operating costs
+- Equipment
+- Staff
+- Location
+- Franchise options
+- Suppliers
+- Business complexity
 
 Primary CTA:
 
@@ -116,13 +116,13 @@ A company that offers franchise opportunities.
 
 They can:
 
-* Create business packages
-* Define investment requirements
-* Add equipment
-* Define franchise fees
-* Define requirements
-* Receive leads
-* Manage applications
+- Create business packages
+- Define investment requirements
+- Add equipment
+- Define franchise fees
+- Define requirements
+- Receive leads
+- Manage applications
 
 ---
 
@@ -130,15 +130,15 @@ They can:
 
 A supplier providing:
 
-* Coffee machines
-* Refrigerators
-* Generators
-* POS systems
-* Kitchen equipment
-* Packaging
-* Furniture
-* Branding materials
-* Spare parts
+- Coffee machines
+- Refrigerators
+- Generators
+- POS systems
+- Kitchen equipment
+- Packaging
+- Furniture
+- Branding materials
+- Spare parts
 
 ---
 
@@ -146,16 +146,16 @@ A supplier providing:
 
 Admin manages:
 
-* Businesses
-* Franchise listings
-* Suppliers
-* Applications
-* Users
-* Locations
-* Categories
-* Pricing
-* Content
-* Leads
+- Businesses
+- Franchise listings
+- Suppliers
+- Applications
+- Users
+- Locations
+- Categories
+- Pricing
+- Content
+- Leads
 
 ---
 
@@ -165,35 +165,35 @@ Create realistic categories.
 
 ## Food
 
-* Burger Truck
-* Pizza Truck
-* Fried Chicken
-* Sandwich Truck
-* Hot Dog
-* Breakfast Truck
+- Burger Truck
+- Pizza Truck
+- Fried Chicken
+- Sandwich Truck
+- Hot Dog
+- Breakfast Truck
 
 ## Coffee & Drinks
 
-* Coffee Truck
-* Specialty Coffee
-* Juice Truck
-* Smoothie Truck
-* Tea Truck
+- Coffee Truck
+- Specialty Coffee
+- Juice Truck
+- Smoothie Truck
+- Tea Truck
 
 ## Services
 
-* Mobile Car Wash
-* Mobile Tire Service
-* Mobile Motorcycle Service
-* Mobile Barber
-* Mobile Phone Repair
+- Mobile Car Wash
+- Mobile Tire Service
+- Mobile Motorcycle Service
+- Mobile Barber
+- Mobile Phone Repair
 
 ## Retail
 
-* Mobile Grocery
-* Mobile Accessories
-* Mobile Fashion
-* Mobile Convenience Store
+- Mobile Grocery
+- Mobile Accessories
+- Mobile Fashion
+- Mobile Convenience Store
 
 ---
 
@@ -293,9 +293,9 @@ The matching should be transparent.
 
 Show:
 
-* Within budget
-* Slightly above budget
-* Significantly above budget
+- Within budget
+- Slightly above budget
+- Significantly above budget
 
 Never imply financial approval or guaranteed profitability.
 
@@ -319,49 +319,49 @@ Filters:
 
 ## Budget
 
-* Under 150K
-* 150K–250K
-* 250K–400K
-* 400K+
+- Under 150K
+- 150K–250K
+- 250K–400K
+- 400K+
 
 ## Category
 
-* Food
-* Coffee
-* Drinks
-* Services
-* Retail
+- Food
+- Coffee
+- Drinks
+- Services
+- Retail
 
 ## Setup Time
 
-* Under 30 days
-* 30–60 days
-* 60–90 days
-* 90+ days
+- Under 30 days
+- 30–60 days
+- 60–90 days
+- 90+ days
 
 ## Business Model
 
-* Independent
-* Franchise
-* Franchise-ready
-* Turnkey
+- Independent
+- Franchise
+- Franchise-ready
+- Turnkey
 
 ## Staff
 
-* 1 person
-* 2 people
-* 3–5 people
-* 5+
+- 1 person
+- 2 people
+- 3–5 people
+- 5+
 
 ## Location
 
-* Street
-* Mall
-* University
-* Business district
-* Residential
-* Gas station
-* Events
+- Street
+- Mall
+- University
+- Business district
+- Residential
+- Gas station
+- Events
 
 ---
 
@@ -399,10 +399,10 @@ Badge:
 
 Additional badges:
 
-* Franchise Available
-* Turnkey
-* Fast Setup
-* Budget Friendly
+- Franchise Available
+- Turnkey
+- Fast Setup
+- Budget Friendly
 
 CTA:
 
@@ -542,32 +542,32 @@ Categories:
 
 ### Vehicle
 
-* Vehicle type
-* Container size
-* Interior setup
-* Electrical system
+- Vehicle type
+- Container size
+- Interior setup
+- Electrical system
 
 ### Equipment
 
-* Main equipment
-* Refrigeration
-* Generator
-* Water system
-* POS
+- Main equipment
+- Refrigeration
+- Generator
+- Water system
+- POS
 
 ### Branding
 
-* Exterior branding
-* Menu board
-* Signage
-* Staff uniforms
+- Exterior branding
+- Menu board
+- Signage
+- Staff uniforms
 
 ### Launch
 
-* Initial inventory
-* Packaging
-* Training
-* Setup support
+- Initial inventory
+- Packaging
+- Training
+- Setup support
 
 ---
 
@@ -592,11 +592,11 @@ Equipment
 
 Each equipment item should show:
 
-* Name
-* Quantity
-* Estimated price
-* Supplier
-* Included / Optional
+- Name
+- Quantity
+- Estimated price
+- Supplier
+- Included / Optional
 
 Use reusable equipment components.
 
@@ -624,12 +624,12 @@ Recommended Locations
 
 Show:
 
-* Required space
-* Electricity requirement
-* Water requirement
-* Parking/access
-* Expected foot traffic level
-* Operating restrictions
+- Required space
+- Electricity requirement
+- Water requirement
+- Parking/access
+- Expected foot traffic level
+- Operating restrictions
 
 Add a visual location/map placeholder.
 
@@ -657,11 +657,11 @@ Entry-level friendly
 
 Show:
 
-* Number of employees
-* Roles
-* Experience
-* Shift structure
-* Estimated staffing cost
+- Number of employees
+- Roles
+- Experience
+- Shift structure
+- Estimated staffing cost
 
 ---
 
@@ -759,12 +759,12 @@ Verified Supplier
 
 Supplier cards:
 
-* Name
-* Category
-* Verification
-* Products
-* Starting price
-* Location
+- Name
+- Category
+- Verification
+- Products
+- Starting price
+- Location
 
 CTA:
 
@@ -865,17 +865,17 @@ Remaining Budget
 
 Ask:
 
-* City
-* Area
-* Preferred location type
+- City
+- Area
+- Preferred location type
 
 Examples:
 
-* Tanta
-* Cairo
-* Giza
-* Alexandria
-* Mansoura
+- Tanta
+- Cairo
+- Giza
+- Alexandria
+- Mansoura
 
 ---
 
@@ -883,9 +883,9 @@ Examples:
 
 Options:
 
-* Independent
-* Franchise
-* Need guidance
+- Independent
+- Franchise
+- Need guidance
 
 ---
 
@@ -893,14 +893,14 @@ Options:
 
 Checkboxes:
 
-* Vehicle setup
-* Equipment sourcing
-* Branding
-* Location assistance
-* Staff hiring
-* Training
-* Supplier connection
-* Maintenance
+- Vehicle setup
+- Equipment sourcing
+- Branding
+- Location assistance
+- Staff hiring
+- Training
+- Supplier connection
+- Maintenance
 
 ---
 
@@ -1061,14 +1061,14 @@ Create an expense-tracking page.
 
 Categories:
 
-* Vehicle
-* Equipment
-* Branding
-* Licensing
-* Inventory
-* Staff
-* Location
-* Maintenance
+- Vehicle
+- Equipment
+- Branding
+- Licensing
+- Inventory
+- Staff
+- Location
+- Maintenance
 
 Show:
 
@@ -1097,15 +1097,15 @@ Show brands/business opportunities.
 
 Each franchise card:
 
-* Brand
-* Category
-* Investment
-* Franchise fee
-* Royalty
-* Setup time
-* Locations available
-* Training
-* Support
+- Brand
+- Category
+- Investment
+- Franchise fee
+- Royalty
+- Setup time
+- Locations available
+- Training
+- Support
 
 CTA:
 
@@ -1121,15 +1121,15 @@ Create:
 
 Categories:
 
-* Vehicle builders
-* Kitchen equipment
-* Coffee equipment
-* Refrigeration
-* Generators
-* POS
-* Branding
-* Packaging
-* Maintenance
+- Vehicle builders
+- Kitchen equipment
+- Coffee equipment
+- Refrigeration
+- Generators
+- POS
+- Branding
+- Packaging
+- Maintenance
 
 Supplier cards:
 
@@ -1161,16 +1161,16 @@ CTA:
 
 Show:
 
-* Supplier profile
-* Verification status
-* Products
-* Categories
-* Location
-* Contact
-* Reviews
-* Lead time
-* Minimum order
-* Supported businesses
+- Supplier profile
+- Verification status
+- Products
+- Categories
+- Location
+- Contact
+- Reviews
+- Lead time
+- Minimum order
+- Supported businesses
 
 CTA:
 
@@ -1203,16 +1203,16 @@ Businesses Launched
 
 Admin sections:
 
-* Users
-* Investors
-* Businesses
-* Franchises
-* Suppliers
-* Applications
-* Categories
-* Locations
-* Content
-* Analytics
+- Users
+- Investors
+- Businesses
+- Franchises
+- Suppliers
+- Applications
+- Categories
+- Locations
+- Content
+- Analytics
 
 ---
 
@@ -1236,12 +1236,12 @@ Business Packages
 
 Features:
 
-* Create business opportunity
-* Edit pricing
-* Add equipment
-* Define requirements
-* Manage applications
-* Respond to investors
+- Create business opportunity
+- Edit pricing
+- Add equipment
+- Define requirements
+- Manage applications
+- Respond to investors
 
 ---
 
@@ -1265,12 +1265,12 @@ Conversion
 
 Features:
 
-* Products
-* Quotes
-* Leads
-* Orders
-* Profile
-* Availability
+- Products
+- Quotes
+- Leads
+- Orders
+- Profile
+- Availability
 
 ---
 
@@ -1278,11 +1278,11 @@ Features:
 
 Global search should support:
 
-* Business name
-* Category
-* Supplier
-* Franchise
-* Location
+- Business name
+- Category
+- Supplier
+- Franchise
+- Location
 
 Example:
 
@@ -1356,14 +1356,14 @@ Use language such as:
 
 Examples:
 
-* Business request received
-* Supplier matched
-* New quote received
-* Setup milestone completed
-* Franchise response
-* Document required
-* Maintenance reminder
-* Launch date updated
+- Business request received
+- Supplier matched
+- New quote received
+- Setup milestone completed
+- Franchise response
+- Document required
+- Maintenance reminder
+- Launch date updated
 
 ---
 
@@ -1373,9 +1373,9 @@ Create a simple messaging UI.
 
 Users can communicate with:
 
-* Franchise owners
-* Suppliers
-* Platform support
+- Franchise owners
+- Suppliers
+- Platform support
 
 Use mock conversations for the MVP.
 
@@ -1389,11 +1389,11 @@ The visual identity must communicate:
 
 It should NOT look like:
 
-* Tourism website
-* Luxury car rental
-* Generic SaaS dashboard
-* Restaurant ordering app
-* Cheap marketplace template
+- Tourism website
+- Luxury car rental
+- Generic SaaS dashboard
+- Restaurant ordering app
+- Cheap marketplace template
 
 ---
 
@@ -1409,9 +1409,9 @@ Deep Graphite:
 
 Use for:
 
-* Navigation
-* Headings
-* Strong UI surfaces
+- Navigation
+- Headings
+- Strong UI surfaces
 
 ## Primary Accent
 
@@ -1421,10 +1421,10 @@ Industrial Orange:
 
 Use for:
 
-* Primary CTA
-* Progress
-* Important actions
-* Business launch indicators
+- Primary CTA
+- Progress
+- Important actions
+- Business launch indicators
 
 ## Secondary
 
@@ -1434,10 +1434,10 @@ Electric Green:
 
 Use for:
 
-* Verified
-* Available
-* Completed
-* Positive financial status
+- Verified
+- Available
+- Completed
+- Positive financial status
 
 ## Background
 
@@ -1463,13 +1463,13 @@ Use:
 
 ### English
 
-* Inter
-* Manrope
+- Inter
+- Manrope
 
 ### Arabic
 
-* Cairo
-* IBM Plex Sans Arabic
+- Cairo
+- IBM Plex Sans Arabic
 
 Support:
 
@@ -1495,21 +1495,21 @@ Do not use emojis as UI icons.
 
 Use high-quality imagery related to:
 
-* Food trucks
-* Coffee trucks
-* Mobile businesses
-* Entrepreneurs
-* Business operations
-* Container vehicles
-* Equipment
+- Food trucks
+- Coffee trucks
+- Mobile businesses
+- Entrepreneurs
+- Business operations
+- Container vehicles
+- Equipment
 
 Avoid:
 
-* Supercars
-* Luxury vehicles
-* Tourism
-* Beaches
-* Racing motorcycles
+- Supercars
+- Luxury vehicles
+- Tourism
+- Beaches
+- Racing motorcycles
 
 The visual message should be:
 
@@ -1521,19 +1521,19 @@ The visual message should be:
 
 Use modern cards with:
 
-* Medium border radius
-* Subtle shadows
-* Clear hierarchy
-* Strong typography
-* Price emphasis
-* Consistent spacing
+- Medium border radius
+- Subtle shadows
+- Clear hierarchy
+- Strong typography
+- Price emphasis
+- Consistent spacing
 
 Avoid excessive:
 
-* Glassmorphism
-* Huge rounded corners
-* Gradients
-* Floating decorative elements
+- Glassmorphism
+- Huge rounded corners
+- Gradients
+- Floating decorative elements
 
 ---
 
@@ -1596,13 +1596,13 @@ Launch your business
 
 Show:
 
-* Verified suppliers
-* Transparent pricing
-* Clear requirements
-* Setup timeline
-* Business comparison
-* Support
-* Structured process
+- Verified suppliers
+- Transparent pricing
+- Clear requirements
+- Setup timeline
+- Business comparison
+- Support
+- Structured process
 
 Avoid fake statistics or fake testimonials.
 
@@ -1614,12 +1614,12 @@ Use clearly marked demo/sample data where needed.
 
 Whenever displaying:
 
-* Investment
-* Operating costs
-* Revenue
-* Profit
-* ROI
-* Earnings
+- Investment
+- Operating costs
+- Revenue
+- Profit
+- ROI
+- Earnings
 
 Use language such as:
 
@@ -1639,11 +1639,11 @@ The application must be fully responsive.
 
 ## Desktop
 
-* Large hero
-* Multi-column marketplace
-* Sidebar filters
-* Dashboard sidebar
-* Comparison tables
+- Large hero
+- Multi-column marketplace
+- Sidebar filters
+- Dashboard sidebar
+- Comparison tables
 
 ## Tablet
 
@@ -1655,14 +1655,14 @@ Mobile is critical.
 
 Use:
 
-* Bottom navigation
-* Sticky CTAs
-* Compact business cards
-* Horizontal comparison scrolling only where necessary
-* Large touch targets
-* Simple forms
-* Clear price hierarchy
-* Sticky "Start My Business" CTA on business details
+- Bottom navigation
+- Sticky CTAs
+- Compact business cards
+- Horizontal comparison scrolling only where necessary
+- Large touch targets
+- Simple forms
+- Clear price hierarchy
+- Sticky "Start My Business" CTA on business details
 
 Never allow horizontal page overflow.
 
@@ -1674,10 +1674,10 @@ Every major page should have skeleton loaders.
 
 Examples:
 
-* Business card skeleton
-* Supplier skeleton
-* Dashboard skeleton
-* Detail page skeleton
+- Business card skeleton
+- Supplier skeleton
+- Dashboard skeleton
+- Detail page skeleton
 
 ---
 
@@ -1713,14 +1713,14 @@ CTA:
 
 Implement:
 
-* Semantic HTML
-* Keyboard navigation
-* Focus states
-* Accessible forms
-* Proper labels
-* Color contrast
-* Touch-friendly controls
-* Screen-reader-friendly buttons
+- Semantic HTML
+- Keyboard navigation
+- Focus states
+- Accessible forms
+- Proper labels
+- Color contrast
+- Touch-friendly controls
+- Screen-reader-friendly buttons
 
 ---
 
@@ -1861,10 +1861,10 @@ Do not scatter hardcoded data across components.
 
 Create:
 
-* Login
-* Register
-* Forgot Password
-* Role selection
+- Login
+- Register
+- Forgot Password
+- Role selection
 
 Roles:
 
@@ -1885,45 +1885,45 @@ Do not implement real payment processing or government-document verification.
 
 ## P0 — Must Have
 
-* Landing page
-* Budget finder
-* Business marketplace
-* Filters
-* Business details
-* Investment breakdown
-* Equipment
-* Location requirements
-* Staff requirements
-* Operating costs
-* Franchise information
-* Supplier information
-* Business comparison
-* Start My Business wizard
-* Investor dashboard
-* Setup timeline
+- Landing page
+- Budget finder
+- Business marketplace
+- Filters
+- Business details
+- Investment breakdown
+- Equipment
+- Location requirements
+- Staff requirements
+- Operating costs
+- Franchise information
+- Supplier information
+- Business comparison
+- Start My Business wizard
+- Investor dashboard
+- Setup timeline
 
 ## P1
 
-* Franchise marketplace
-* Supplier marketplace
-* Supplier profiles
-* Quote requests
-* Messaging
-* Notifications
-* Expenses
-* Recommendations
+- Franchise marketplace
+- Supplier marketplace
+- Supplier profiles
+- Quote requests
+- Messaging
+- Notifications
+- Expenses
+- Recommendations
 
 ## P2
 
-* Real authentication
-* Payments
-* Maps
-* Real supplier integrations
-* Document management
-* Analytics
-* CRM
-* Advanced matching
-* Backend API
+- Real authentication
+- Payments
+- Maps
+- Real supplier integrations
+- Document management
+- Analytics
+- CRM
+- Advanced matching
+- Backend API
 
 ---
 
@@ -2025,14 +2025,14 @@ Then user opens Coffee Truck.
 
 Sees:
 
-* Investment
-* Equipment
-* Location
-* Staff
-* Operating costs
-* Franchise
-* Suppliers
-* Setup timeline
+- Investment
+- Equipment
+- Location
+- Staff
+- Operating costs
+- Franchise
+- Suppliers
+- Setup timeline
 
 Then clicks:
 
@@ -2046,22 +2046,22 @@ Build this as a serious startup MVP.
 
 The final result should look suitable for:
 
-* Investor demo
-* Portfolio project
-* Startup prototype
-* Business presentation
-* Potential real-world expansion
+- Investor demo
+- Portfolio project
+- Startup prototype
+- Business presentation
+- Potential real-world expansion
 
 Every page should have meaningful content.
 
 Do not use:
 
-* Lorem ipsum
-* Generic dashboard text
-* Fake statistics
-* Random placeholder companies
-* Empty sections
-* Generic SaaS copy
+- Lorem ipsum
+- Generic dashboard text
+- Fake statistics
+- Random placeholder companies
+- Empty sections
+- Generic SaaS copy
 
 Use realistic Egyptian business context.
 

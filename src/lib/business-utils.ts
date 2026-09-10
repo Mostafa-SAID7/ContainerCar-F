@@ -21,11 +21,19 @@ export function budgetFit(budget: number, investment: number): BudgetFit {
   if (investment <= budget) {
     const headroom = (budget - investment) / budget;
     const percent = Math.round(100 - headroom * 6);
-    return { percent: Math.min(100, Math.max(90, percent)), status: "within", label: "Within budget" };
+    return {
+      percent: Math.min(100, Math.max(90, percent)),
+      status: "within",
+      label: "Within budget",
+    };
   }
   const over = (investment - budget) / budget;
   if (over <= 0.2) {
-    return { percent: Math.round(100 - over * 130), status: "slightly-above", label: "Slightly above budget" };
+    return {
+      percent: Math.round(100 - over * 130),
+      status: "slightly-above",
+      label: "Slightly above budget",
+    };
   }
   return {
     percent: Math.max(35, Math.round(100 - over * 130)),
@@ -57,7 +65,10 @@ export function businessFit(business: Business, prefs: FitPreferences): FitBreak
   );
 
   const staffAvail = prefs.staffAvailability ?? business.staffMax;
-  const staffScore = staffAvail >= business.staffMax ? 100 : Math.max(55, 100 - (business.staffMax - staffAvail) * 15);
+  const staffScore =
+    staffAvail >= business.staffMax
+      ? 100
+      : Math.max(55, 100 - (business.staffMax - staffAvail) * 15);
 
   const locationScore =
     !prefs.locationType || prefs.locationType === "Any"
@@ -66,7 +77,8 @@ export function businessFit(business: Business, prefs: FitPreferences): FitBreak
         ? 100
         : 65;
 
-  const complexityScore = business.complexity === "Low" ? 95 : business.complexity === "Medium" ? 80 : 68;
+  const complexityScore =
+    business.complexity === "Low" ? 95 : business.complexity === "Medium" ? 80 : 68;
 
   const franchiseScore =
     !prefs.franchisePreference || prefs.franchisePreference === "Any"
