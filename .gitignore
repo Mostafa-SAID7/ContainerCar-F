@@ -16,6 +16,12 @@ dist-ssr
 .nitro
 *.local
 
+# Lock files (use npm ci for reproducible installs)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
