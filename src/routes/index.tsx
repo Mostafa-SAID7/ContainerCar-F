@@ -1,16 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Nav } from "@/components/site/Nav";
+import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
-import { Work } from "@/components/site/Work";
-import { Expertise } from "@/components/site/Expertise";
-import { Experience } from "@/components/site/Experience";
-import { About } from "@/components/site/About";
+import { BusinessBrowser } from "@/components/site/BusinessBrowser";
+import { Franchises } from "@/components/site/Franchises";
+import { Suppliers } from "@/components/site/Suppliers";
+import { HowItWorks } from "@/components/site/HowItWorks";
 
-import { Footer } from "@/components/site/Footer";
-
-const title = "Mostafa Samir — Booking Systems Full Stack Engineer";
+const title = "ContainerCar — Start a Container Business in Egypt";
 const description =
-  "Senior Full Stack Engineer building high-performance, multi-tenant booking and scheduling infrastructure with .NET 8, microservices and real-time systems.";
+  "Compare investment, setup time and staffing for ready-to-run container businesses, franchise brands and verified suppliers.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,15 +27,14 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background">
-      <Nav />
+      <Header />
       <main>
         <Hero />
-        <Work />
-        <Expertise />
-        <Experience />
-        <About />
+        <BusinessBrowser />
+        <Franchises />
+        <Suppliers />
+        <HowItWorks />
       </main>
-      <Footer />
     </div>
   );
 }
