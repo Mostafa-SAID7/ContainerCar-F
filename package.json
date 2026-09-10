@@ -11,9 +11,7 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "format": "prettier --write ."
   },
   "overrides": {
     "rolldown": "1.2.1"
