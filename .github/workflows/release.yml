@@ -60,10 +60,10 @@ jobs:
           VERSION="${{ github.event.inputs.version }}"
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
-          
+
           # Create annotated tag
           git tag -a "v$VERSION" -m "Release v$VERSION" || true
-          
+
           # Push tag to remote
           git push origin "v$VERSION" || true
         env:
@@ -84,21 +84,21 @@ jobs:
           name: v${{ github.event.inputs.version }}
           body: |
             # Release v${{ github.event.inputs.version }}
-            
+
             **Release Type:** ${{ github.event.inputs.release_type }}
-            
+
             ## What's New
             See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for full details.
-            
+
             ## Installation
             ```bash
             npm install
             npm run build
             ```
-            
+
             ## Download
             - **Build Artifact:** containercar-${{ github.event.inputs.version }}.tar.gz
-            
+
             ## Links
             - [Repository](https://github.com/${{ github.repository }})
             - [Issues](https://github.com/${{ github.repository }}/issues)
